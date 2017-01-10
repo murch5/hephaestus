@@ -1,19 +1,26 @@
 import contourMap as ctrmap
 import generateFrameSet
 import sys
+import matplotlib.pyplot as plt
 
 class contourMapAnim():
 
     def __init__(self, frames):
         self.contourMapBase = ctrmap.contourMap(frames[0])
         self.frames = frames
-
+        self.fig = plt.figure()
+        self.subplot = self.fig.add_subplot()
         return;
 
     def animateContour(n):
         return;
 
     def animateInit(self):
+        return;
+
+    def startAnim(self):
+
+
         return;
 
 test = generateFrameSet.generateFrameSet("*.tif")
