@@ -16,6 +16,11 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
 
 generateFrameSet("*.tiff")
 
+
+def FlattenTIFFData(TIFFdata): #TIFFdata - NumPy array of raw TIFF data
+
+    return;
+
 def generateFrameFromTIFF(filePath): #filePath - path of individual image file to load
 
 
