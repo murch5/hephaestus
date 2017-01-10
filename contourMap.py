@@ -29,4 +29,6 @@ class contourMap:
 
         return;
 
+    def drawContour(self):
+        return;
 

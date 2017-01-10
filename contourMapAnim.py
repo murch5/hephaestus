@@ -22,12 +22,14 @@ class contourMapAnim():
     def startAnim(self):
 
         anim.FuncAnimation(self.fig, self.animateContour(),frames = 2, init_func=self.animateInit(), interval=1)
-
+        plt.show()
         return;
 
 test = generateFrameSet.generateFrameSet("*.tif")
 
 animation = contourMapAnim(test)
+
+animation.startAnim()
 
 r = ctrmap.contourMap(test[0])
 
