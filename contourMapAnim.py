@@ -14,14 +14,16 @@ class contourMapAnim():
         return;
 
     def animateContour(n):
+        print("test")
         return;
 
     def animateInit(self):
+        print("LOG:    Initialize animation")
         return;
 
     def startAnim(self):
-
-        anim.FuncAnimation(self.fig, self.animateContour(),frames = 2, init_func=self.animateInit(), interval=1)
+        print("LOG:    Start animation")
+        anim.FuncAnimation(self.fig, self.animateContour(),frames = 10, init_func=self.animateInit())
         plt.show()
         return;
 
@@ -31,11 +33,6 @@ animation = contourMapAnim(test)
 
 animation.startAnim()
 
-r = ctrmap.contourMap(test[0])
+#sys.stdout = open('log.txt', 'w')
 
-sys.stdout = open('log.txt', 'w')
-
-print(test[0])
-print(test[0].shape)
-
-sys.stdout.close()
+#sys.stdout.close()
