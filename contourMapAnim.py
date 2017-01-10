@@ -1,20 +1,30 @@
-import contourMap
+import contourMap as ctrmap
+import generateFrameSet
+import sys
 
 class contourMapAnim():
 
     def __init__(self, frames):
-        self.contourMapBase = contourMap(frames[0])
+        self.contourMapBase = ctrmap.contourMap(frames[0])
         self.frames = frames
 
         return;
 
-    test = generateFrameSet.generateFrameSet("*.tif")
+    def animateContour(n):
+        return;
 
-    r = contourMap(test[0])
+    def animateInit(self):
+        return;
 
-    sys.stdout = open('log.txt', 'w')
+test = generateFrameSet.generateFrameSet("*.tif")
 
-    print(test[0])
-    print(test[0].shape)
+animation = contourMapAnim(test)
 
-    sys.stdout.close()
+r = ctrmap.contourMap(test[0])
+
+sys.stdout = open('log.txt', 'w')
+
+print(test[0])
+print(test[0].shape)
+
+sys.stdout.close()
