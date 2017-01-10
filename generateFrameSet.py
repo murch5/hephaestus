@@ -10,12 +10,12 @@ import sys
 
 def FlattenTIFFData(TIFFdata, channel=1): #TIFFdata - NumPy array of raw TIFF data
 
-    flat = TIFFdata[:,:, channel]
-    return flat;
+    flat = TIFFdata[:,:, channel] #extract only single channel
+    return flat; #return flattened data
 
 def generateFrameFromTIFF(filePath): #filePath - path of individual image file to load
 
-    image = plt.imread(filePath)
+    image = plt.imread(filePath) #load TIFF file using matplotlib (with Pillow dependency)
 
     return image;
 
@@ -30,7 +30,7 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
         print("LOG:    Load image Name: " + file)
         frames.append(FlattenTIFFData(generateFrameFromTIFF(file)))
 
-    return frames;
+    return frames;  #return list of frames
 
 test = generateFrameSet("*.tif")
 
