@@ -7,25 +7,32 @@ import generateFrameSet
 
 class contourMap:
 
-    x, y, X, Y = []
+    def initContourMap(self):
+        dim = self.surfaceData.shape
+        print(dim)
+
+        self.x = np.arange(0, dim[0])
+        self.y = np.arange(0, dim[1])
+
+        self.X,self.Y = np.meshgrid(self.x,self.y)
+
+        return;
 
     def __init__(self,data):
         self.surfaceData = data
-        return;
+        self.x = []
+        self.y = []
+        self.meshX = []
+        self.meshY = []
 
-    def initContourMap(topologyData):
-
-        dim = topologyData.shape
-        print(dim)
-
-        x = np.arange(0, dim[0])
-        y = np.arange(0, dim[1])
+        self.initContourMap()
 
         return;
+
 
 test = generateFrameSet.generateFrameSet("*.tif")
 
-r = contourMap(test)
+r = contourMap(test[0])
 
 sys.stdout = open('log.txt', 'w')
 
