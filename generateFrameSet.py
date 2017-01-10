@@ -27,7 +27,7 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
     fileList = glob.glob(filePath)
     print("LOG:       File list contains: " + str(len(fileList)) + " images")
     for file in fileList:
-        print("LOG:    Load image Name: " + file)
+        print("LOG:    Load image name: " + file)
         frames.append(FlattenTIFFData(generateFrameFromTIFF(file)))
 
     return frames;  #return list of frames
