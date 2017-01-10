@@ -32,14 +32,6 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
 
     return frames;  #return list of frames
 
-test = generateFrameSet("*.tif")
-
-sys.stdout = open('log.txt', 'w')
-
-print(test[0])
-print(test[0].shape)
-
-sys.stdout.close()
 
 
 

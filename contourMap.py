@@ -11,3 +11,11 @@ def initContourMap(topologyData):
 
     return;
 
+test = generateFrameSet.generateFrameSet("*.tif")
+
+sys.stdout = open('log.txt', 'w')
+
+print(test[0])
+print(test[0].shape)
+
+sys.stdout.close()
