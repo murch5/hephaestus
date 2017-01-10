@@ -2,6 +2,7 @@ import contourMap as ctrmap
 import generateFrameSet
 import sys
 import matplotlib.pyplot as plt
+import matplotlib.animation as anim
 
 class contourMapAnim():
 
@@ -20,6 +21,7 @@ class contourMapAnim():
 
     def startAnim(self):
 
+        anim.FuncAnimation(self.fig, self.animateContour(),frames = 2, init_func=self.animateInit(), interval=1)
 
         return;
 
