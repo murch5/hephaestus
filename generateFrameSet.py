@@ -8,9 +8,9 @@ np.set_printoptions(threshold=np.inf)
 import scipy as sp
 import sys
 
-def FlattenTIFFData(TIFFdata): #TIFFdata - NumPy array of raw TIFF data
+def FlattenTIFFData(TIFFdata, channel=1): #TIFFdata - NumPy array of raw TIFF data
 
-    flat = TIFFdata[:,:,2]
+    flat = TIFFdata[:,:, channel]
     return flat;
 
 def generateFrameFromTIFF(filePath): #filePath - path of individual image file to load
