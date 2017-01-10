@@ -22,13 +22,14 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
     print("LOG:    Start Frame Set Generation")
     frames = []
     fileList = glob.glob(filePath)
+    print(fileList)
     for file in fileList:
-        print("LOG:    Image Name: " + file)
+        print("LOG:    Load image Name: " + file)
         frames.append(generateFrameFromTIFF(file))
 
     return;
 
-generateFrameSet("*")
+generateFrameSet("*.tif")
 
 
 
