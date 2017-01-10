@@ -5,9 +5,18 @@ import os
 
 def generateFrameSet(filePath): #filePath - path of file directory containing TIFF files to load
 
-    for name in glob.glob(filePath):
-        print(name)
+    print("LOG:    Start Frame Set Generation")
+    frames = []
+    fileList = glob.glob(filePath)
+    for file in fileList:
+        print("LOG:    Image Name: " + file)
+        frame.append(generateFrameFromTIFF(file))
 
     return;
 
-generateFrameSet("*")
+generateFrameSet("*.tiff")
+
+def generateFrameFromTIFF(filePath): #filePath - path of individual image file to load
+
+
+    return;
