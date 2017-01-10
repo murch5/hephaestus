@@ -29,7 +29,7 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
     for file in fileList:
         print("LOG:    Load image name: " + file)
         frames.append(FlattenTIFFData(generateFrameFromTIFF(file)))
-
+    print("LOG:    Returning frames")
     return frames;  #return list of frames
 
 
