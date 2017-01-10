@@ -28,9 +28,12 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
         print("LOG:    Load image Name: " + file)
         frames.append(generateFrameFromTIFF(file))
 
-    return;
+    return frames;
 
-generateFrameSet("*.tif")
+test = generateFrameSet("*.tif")
+print(test[0])
+print(test[0].shape)
+
 
 
 
