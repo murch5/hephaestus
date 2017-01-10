@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 import glob
 import os
 import numpy as np
+np.set_printoptions(threshold=np.inf)
 import scipy as sp
+import sys
 
 def FlattenTIFFData(TIFFdata): #TIFFdata - NumPy array of raw TIFF data
 
@@ -26,14 +28,18 @@ def generateFrameSet(filePath): #filePath - path of file directory containing TI
     print("LOG:       File list contains: " + str(len(fileList)) + " images")
     for file in fileList:
         print("LOG:    Load image Name: " + file)
-        frames.append(generateFrameFromTIFF(file))
+        frames.append(FlattenTIFFData(generateFrameFromTIFF(file)))
 
     return frames;
 
 test = generateFrameSet("*.tif")
+
+sys.stdout = open('log.txt', 'w')
+
 print(test[0])
 print(test[0].shape)
 
+sys.stdout.close()
 
 
 
