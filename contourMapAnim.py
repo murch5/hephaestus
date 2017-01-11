@@ -6,7 +6,7 @@ import matplotlib.animation as anim
 import numpy as np
 import scipy.interpolate
 
-class contourMapAnim():
+class contourMapAnim:
 
     def __init__(self, frames):
         self.frames = frames
@@ -21,7 +21,7 @@ class contourMapAnim():
 
         print(self.fig)
         print(self.subplot)
-        return;
+        return
 
     def animateContour(self,i):
         self.currFrameIndex += 1
@@ -44,18 +44,19 @@ class contourMapAnim():
         self.contourMapBase.setSurfaceData(self.currFrame)
         self.subplot.clear()
         self.contourMapBase.drawContour()
-        return self.subplot;
+        return self.subplot
 
     def animateInit(self):
         print("LOG:    Initialize animation")
         self.contourMapBase.drawContour()
-        return self.subplot;
+        return self.subplot
 
     def startAnim(self):
         print("LOG:    Start animation")
         self.animHandler = anim.FuncAnimation(self.fig, self.animateContour,frames = self.framesPerImage*len(self.frames), init_func=self.animateInit)
         plt.show()
-        return;
+        return
+
 
 test = generateFrameSet.generateFrameSet("*.tif")
 
