@@ -1,12 +1,17 @@
 import contourMapAnim as cm
 import generateFrameSet as gf
 import numpy as np
+from matplotlib import lines as ln
 
 class zbPeristalsis():
 
     def drawLines(self):
 
+        for boundaryLines in self.lineCoord:
+            print(boundaryLines)
+            self.contourAnimationHandler.subplot.add_line(ln.Line2D(boundaryLines[:,0],boundaryLines[:,1]))
         return;
+
     def loadBoundaryCoord(self,fileNames):
 
         for file in fileNames:
