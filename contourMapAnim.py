@@ -3,6 +3,7 @@ import generateFrameSet
 import sys
 import matplotlib.pyplot as plt
 import matplotlib.animation as anim
+import numpy as np
 
 class contourMapAnim():
 
@@ -27,7 +28,11 @@ class contourMapAnim():
             self.currFrame = 0
             self.currImage += 1
 
-
+        it = np.nditer(self.frames[self.currImage], flags=['multi_index'])
+        while not it.finished:
+            print(it[0])
+            print(it.multi_index)
+            it.iternext()
 
         return;
 
