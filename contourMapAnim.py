@@ -32,17 +32,18 @@ class contourMapAnim():
 
         it = np.nditer(self.currFrame, flags=['multi_index'])
         while not it.finished:
-            self.currFrame[it.multi_index] = self.frames[self.currImageIndex][it.multi_index]
-            it.iternext()
+
+            self.currFrame[it.multi_index] = self.frames[self.currImageIndex][it.multi_index] + ((self.frames[(self.currImageIndex+1)][it.multi_index]- self.frames[self.currImageIndex][it.multi_index])*(self.currFrameIndex/20))            it.iternext()
 
         self.contourMapBase.setSurfaceData(self.currFrame)
-
-        return;
+        self.subplot.clear()
+        self.contourMapBase.drawContour()
+        return self.subplot;
 
     def animateInit(self):
         print("LOG:    Initialize animation")
         self.contourMapBase.drawContour()
-        return;
+        return self.subplot;
 
     def startAnim(self):
         print("LOG:    Start animation")
