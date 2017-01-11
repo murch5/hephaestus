@@ -12,12 +12,16 @@ class contourMapAnim():
         self.subplot = self.fig.add_subplot(1,1,1)
         self.animHandler = []
         self.contourMapBase = ctrmap.contourMap(frames[0], self.subplot)
+        self.framesPerImage = 20
+        self.currFrame = 0
+        self.currImage = 0
+
         print(self.fig)
         print(self.subplot)
         return;
 
     def animateContour(self,i):
-        print("test")
+        print(i)
         return;
 
     def animateInit(self):
@@ -27,7 +31,7 @@ class contourMapAnim():
 
     def startAnim(self):
         print("LOG:    Start animation")
-        self.animHandler = anim.FuncAnimation(self.fig, self.animateContour,frames = 100, init_func=self.animateInit)
+        self.animHandler = anim.FuncAnimation(self.fig, self.animateContour,frames = self.framesPerImage*len(self.frames), init_func=self.animateInit)
         plt.show()
         return;
 
