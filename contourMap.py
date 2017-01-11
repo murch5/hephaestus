@@ -18,12 +18,13 @@ class contourMap:
 
         return;
 
-    def __init__(self,data):
+    def __init__(self,data,targetSubplot):
         self.surfaceData = data
         self.x = []
         self.y = []
         self.meshX = []
         self.meshY = []
+        self.subplot = targetSubplot
 
         self.initContourMap()
 

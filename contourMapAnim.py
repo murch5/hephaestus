@@ -7,11 +7,11 @@ import matplotlib.animation as anim
 class contourMapAnim():
 
     def __init__(self, frames):
-        self.contourMapBase = ctrmap.contourMap(frames[0])
         self.frames = frames
         self.fig = plt.figure()
         self.subplot = self.fig.add_subplot()
         self.animHandler = []
+        self.contourMapBase = ctrmap.contourMap(frames[0], self.subplot)
         return;
 
     def animateContour(self,i):
