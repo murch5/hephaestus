@@ -35,3 +35,6 @@ class contourMap:
         self.subplot.contour(self.meshX,self.meshY,self.surfaceData,zdir='z', offset=-20, cmap="coolwarm")
         return;
 
+    def setSurfaceData(self,data):
+        self.surfaceData = data
+        return;

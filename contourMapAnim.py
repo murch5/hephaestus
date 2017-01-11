@@ -4,35 +4,38 @@ import sys
 import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 import numpy as np
+import scipy.interpolate
 
 class contourMapAnim():
 
     def __init__(self, frames):
         self.frames = frames
+        self.currFrame = frames[0]
         self.fig = plt.figure()
         self.subplot = self.fig.add_subplot(1,1,1)
         self.animHandler = []
-        self.contourMapBase = ctrmap.contourMap(frames[0], self.subplot)
+        self.contourMapBase = ctrmap.contourMap(self.currFrame, self.subplot)
         self.framesPerImage = 20
-        self.currFrame = 0
-        self.currImage = 0
+        self.currFrameIndex = 0
+        self.currImageIndex = 0
 
         print(self.fig)
         print(self.subplot)
         return;
 
     def animateContour(self,i):
-        self.currFrame += 1
+        self.currFrameIndex += 1
 
-        if self.currFrame == self.framesPerImage:
-            self.currFrame = 0
-            self.currImage += 1
+        if self.currFrameIndex == self.framesPerImage:
+            self.currFrameIndex = 0
+            self.currImageIndex += 1
 
-        it = np.nditer(self.frames[self.currImage], flags=['multi_index'])
+        it = np.nditer(self.currFrame, flags=['multi_index'])
         while not it.finished:
-            print(it[0])
-            print(it.multi_index)
+            self.currFrame[it.multi_index] = self.frames[self.currImageIndex][it.multi_index]
             it.iternext()
+
+        self.contourMapBase.setSurfaceData(self.currFrame)
 
         return;
 
