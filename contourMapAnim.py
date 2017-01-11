@@ -11,9 +11,10 @@ class contourMapAnim():
         self.frames = frames
         self.fig = plt.figure()
         self.subplot = self.fig.add_subplot()
+        self.animHandler = []
         return;
 
-    def animateContour(n):
+    def animateContour(self,i):
         print("test")
         return;
 
@@ -23,7 +24,7 @@ class contourMapAnim():
 
     def startAnim(self):
         print("LOG:    Start animation")
-        anim.FuncAnimation(self.fig, self.animateContour(),frames = 10, init_func=self.animateInit())
+        self.animHandler = anim.FuncAnimation(self.fig, self.animateContour,frames = 600, init_func=self.animateInit)
         plt.show()
         return;
 
