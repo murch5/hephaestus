@@ -21,7 +21,14 @@ class contourMapAnim():
         return;
 
     def animateContour(self,i):
-        print(i)
+        self.currFrame += 1
+
+        if self.currFrame == self.framesPerImage:
+            self.currFrame = 0
+            self.currImage += 1
+
+
+
         return;
 
     def animateInit(self):
