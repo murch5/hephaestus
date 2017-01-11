@@ -1,6 +1,10 @@
 import contourMapAnim
+import generateFrameSet
 
-def analyzeZbPeristalsis():
+class zbPeristalsis():
 
+    def __init__(self):
+        self.contourAnimationHandler = contourMapAnim.contourMapAnim(generateFrameSet.generateFrameSet("*.tif"))
+        self.contourAnimationHandler.startAnim()
 
-    return;
+test = zbPeristalsis()

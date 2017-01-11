@@ -58,11 +58,6 @@ class contourMapAnim:
         return
 
 
-test = generateFrameSet.generateFrameSet("*.tif")
-
-animation = contourMapAnim(test)
-
-animation.startAnim()
 
 #sys.stdout = open('log.txt', 'w')
 
