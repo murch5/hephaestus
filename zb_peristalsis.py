@@ -12,6 +12,9 @@ class zbPeristalsis():
             self.contourAnimationHandler.subplot.add_line(ln.Line2D(boundaryLines[:,0],boundaryLines[:,1]))
         return;
 
+    def initLines(self):
+
+        return;
     def loadBoundaryCoord(self,fileNames):
 
         for file in fileNames:

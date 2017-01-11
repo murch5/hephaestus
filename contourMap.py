@@ -34,7 +34,7 @@ class contourMap:
 
     def drawContour(self):
        # print("LOG:    Draw initial step of contour map")
-        self.contourPlot = self.subplot.contour(self.meshX, self.meshY, self.surfaceData.T, zdir='z', cmap="viridis")
+        self.contourPlot = self.subplot.contour(self.meshX, self.meshY, self.surfaceData.T, zdir='z',linewidths=1,cmap="viridis")
         if self.addLinesFlag == True:
             self.lineDrawFunc()
         return

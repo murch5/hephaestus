@@ -12,7 +12,7 @@ class contourMapAnim:
         self.frames = frames
         self.currFrame = frames[0]
         self.fig = plt.figure()
-        self.subplot = self.fig.add_subplot(1,1,1)
+        self.subplot = self.fig.add_subplot(111,aspect='equal')
         self.animHandler = []
         self.contourMapBase = ctrmap.contourMap(self.currFrame, self.subplot)
         self.framesPerImage = 1
