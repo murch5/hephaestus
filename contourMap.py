@@ -9,7 +9,6 @@ class contourMap:
 
     def initContourMap(self):
         dim = self.surfaceData.shape
-        print(dim)
 
         self.x = np.arange(0, dim[0])
         self.y = np.arange(0, dim[1])
@@ -24,6 +23,7 @@ class contourMap:
         self.y = []
         self.meshX = []
         self.meshY = []
+
         self.subplot = targetSubplot
 
         self.initContourMap()
@@ -31,5 +31,8 @@ class contourMap:
         return;
 
     def drawContour(self):
+        print("LOG:    Draw initial step of contour map")
+
+        self.subplot.contour(self.meshX,self.meshY,self.surfaceData,zdir='z', offset=-20, cmap="coolwarm")
         return;
 
