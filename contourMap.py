@@ -33,7 +33,7 @@ class contourMap:
 
     def drawContour(self):
         print("LOG:    Draw initial step of contour map")
-        self.contourPlot = self.subplot.contour(self.meshX,self.meshY,self.surfaceData,zdir='z', offset=-20, cmap="coolwarm")
+        self.contourPlot = self.subplot.contour(self.meshX,self.meshY,self.surfaceData.T,zdir='z', offset=-20, cmap="coolwarm")
         return;
 
     def setSurfaceData(self,data):

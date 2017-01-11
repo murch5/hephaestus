@@ -15,7 +15,7 @@ class contourMapAnim():
         self.subplot = self.fig.add_subplot(1,1,1)
         self.animHandler = []
         self.contourMapBase = ctrmap.contourMap(self.currFrame, self.subplot)
-        self.framesPerImage = 20
+        self.framesPerImage = 1
         self.currFrameIndex = 0
         self.currImageIndex = 0
 
