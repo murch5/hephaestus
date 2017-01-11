@@ -3,13 +3,21 @@ import generateFrameSet as gf
 
 class zbPeristalsis():
 
+    def loadBoundaryCoord(fileName):
+        return;
+
+    def drawBoundaryCoord(self):
+        self.contourAnimationHandler.contourMapBase.assignLineDrawFunc("")
+
+        return;
+
     def __init__(self):
         self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
         self.contourAnimationHandler.startAnim()
 
-    def loadBoundaryCoord(fileName):
+        self.drawBoundaryCoord()
 
-        return;
 
-    #def drawBoundaryCoord
+
 test = zbPeristalsis()
+

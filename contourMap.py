@@ -43,8 +43,9 @@ class contourMap:
         self.surfaceData = data
         return
 
-    def assignLineDrawFunc(lineFunc):
+    def assignLineDrawFunc(self,lineFunc):
 
+        self.addLinesFlag = True
         self.lineDrawFunc = lineFunc
 
         return;
