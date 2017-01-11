@@ -13,7 +13,7 @@ class contourMap:
         self.x = np.arange(0, dim[0])
         self.y = np.arange(0, dim[1])
 
-        self.X,self.Y = np.meshgrid(self.x,self.y)
+        self.meshX,self.meshY = np.meshgrid(self.x,self.y)
 
         return;
 
@@ -32,7 +32,6 @@ class contourMap:
 
     def drawContour(self):
         print("LOG:    Draw initial step of contour map")
-
         self.subplot.contour(self.meshX,self.meshY,self.surfaceData,zdir='z', offset=-20, cmap="coolwarm")
         return;
 

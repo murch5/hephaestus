@@ -27,7 +27,7 @@ class contourMapAnim():
 
     def startAnim(self):
         print("LOG:    Start animation")
-        self.animHandler = anim.FuncAnimation(self.fig, self.animateContour,frames = 1, init_func=self.animateInit)
+        self.animHandler = anim.FuncAnimation(self.fig, self.animateContour,frames = 100, init_func=self.animateInit)
         plt.show()
         return;
 
