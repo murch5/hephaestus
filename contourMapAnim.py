@@ -30,6 +30,10 @@ class contourMapAnim():
             self.currFrameIndex = 0
             self.currImageIndex += 1
 
+        if self.currImageIndex == len(self.frames)-1:
+            self.currFrameIndex = 0
+            self.currImageIndex = 0
+
         it = np.nditer(self.currFrame, flags=['multi_index'])
         while not it.finished:
 
