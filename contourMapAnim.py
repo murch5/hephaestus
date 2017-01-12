@@ -8,9 +8,10 @@ import scipy.interpolate
 
 class contourMapAnim:
 
-    def __init__(self, frames):
-        self.frames = frames
-        self.currFrame = frames[0]
+    def __init__(self, data, position):
+        self.frames = data
+        self.position = position
+        self.currFrame = data[0]
         self.fig = plt.figure()
         self.subplot = self.fig.add_subplot(111,aspect='equal')
         self.animHandler = []
@@ -57,6 +58,7 @@ class contourMapAnim:
         plt.show()
         return
 
+    def
 
 
 #sys.stdout = open('log.txt', 'w')

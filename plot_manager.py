@@ -30,7 +30,7 @@ class plot_manager():
 
     def animate(self):
 
-        for plot in plotList:
+        #for plot in plotList:
 
 
         return;

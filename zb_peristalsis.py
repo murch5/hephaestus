@@ -3,9 +3,9 @@ import generateFrameSet as gf
 import numpy as np
 from matplotlib import lines as ln
 import matplotlib.collections as collect
+from contourMapAnim import contourMapAnim
 
-class zbPeristalsis():
-
+class zbPeristalsis(contourMapAnim):
 
     def drawLines(self):
 
@@ -32,12 +32,13 @@ class zbPeristalsis():
         return;
 
     def drawBoundaryCoord(self):
-        self.contourAnimationHandler.contourMapBase.assignLineDrawFunc(self.drawLines)
+        contourMapAnim.contourMapBase.assignLineDrawFunc(self.drawLines)
 
         return;
 
     def __init__(self,data, position):
-        self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
+        contourMapAnim.__init__(self,data,position)
+        #self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
         self.lineCoord = []
         self.lineCoordFormatted = []
         self.lineCollection = None
@@ -49,9 +50,9 @@ class zbPeristalsis():
         self.loadBoundaryCoord(fileNames)
         self.drawBoundaryCoord()
         self.initLines()
-        self.contourAnimationHandler.startAnim()
+        contourMapAnim.startAnim()
 
 
 
-test = zbPeristalsis(None)
+test = zbPeristalsis(gf.generateFrameSet("*.tif"),None)
 
