@@ -1,5 +1,5 @@
 import animPlot as animPlot
-import matplotlib.pyploy as plt
+import matplotlib.pyplot as plt
 
 class imageStack(animPlot.animPlot):
 
@@ -25,14 +25,14 @@ class imageStack(animPlot.animPlot):
             self.currFrameIndex = 0
             self.currImageIndex = 0
 
-        self.currFrame = self.frame[i]
+        self.currFrame = self.frames[i]
 
         self.subplot.clear()
-        self.subplot = plt.imshow(self.currFrame)
+        self.subplot.imshow(self.currFrame.T)
 
         return;
 
     def draw(self):
         self.subplot.clear()
-        self.subplot = plt.imshow(self.currFrame)
+        self.subplot.imshow(self.currFrame.T)
         return;

@@ -6,7 +6,7 @@ class plot():
         self.figure = figure
         self.data = data
         self.position = position
-        self.subplot = figure.add_subplot(position, aspect='equal')
+        self.subplot = figure.add_subplot(position, aspect="equal")
 
     def animate(self,i):
         return;

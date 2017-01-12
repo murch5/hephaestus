@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from zb_peristalsis import zbPeristalsis
+from imageStack import imageStack
 import generateFrameSet as gf
 import matplotlib.animation as anim
 
@@ -45,7 +46,7 @@ class plot_manager():
 test1 = plot_manager()
 test1.addPlot(zbPeristalsis,gf.generateFrameSet("WT/*.tif"),311)
 test1.addPlot(zbPeristalsis,gf.generateFrameSet("Mut/*.tif"),312)
-test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),313)
+test1.addPlot(imageStack,gf.generateFrameSet("*.tif"),313)
 
 test1.startAnim()
 #test = zbPeristalsis(test1.getFigure(),gf.generateFrameSet("*.tif"),111)
