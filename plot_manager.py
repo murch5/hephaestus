@@ -24,7 +24,7 @@ class plot_manager():
 
 
     def startAnim(self):
-        self.animHandler = anim.FuncAnimation(self.figure, self.animate, frames=self.framesPerImage * self.totalFrames, init_func=self.initAnim)
+        self.animHandler = anim.FuncAnimation(self.figure, self.animatePlot, frames=self.framesPerImage * self.totalFrames, init_func=self.initAnim)
         plt.show()
         return;
 
@@ -32,9 +32,10 @@ class plot_manager():
 
         return;
 
-    def animate(self):
+    def animatePlot(self,i):
 
-        #for plot in plotList:
+        for plot in self.plotList:
+            plot.animate(i)
 
 
         return;
@@ -44,7 +45,8 @@ class plot_manager():
 
 
 test1 = plot_manager()
-test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),211)
+test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),121)
+test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),122)
 test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),222)
 
 test1.startAnim()

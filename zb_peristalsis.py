@@ -50,7 +50,7 @@ class zbPeristalsis(contourMapAnim):
         self.loadBoundaryCoord(fileNames)
         self.drawBoundaryCoord()
         self.initLines()
-        self.startAnim()
+
 
 
 
