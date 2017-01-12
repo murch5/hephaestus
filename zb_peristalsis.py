@@ -6,30 +6,30 @@ import matplotlib.collections as collect
 
 class zbPeristalsis():
 
+
     def drawLines(self):
 
-        for boundaryLines in self.lineCoord:
-            print(boundaryLines)
-            print(type(boundaryLines))
-            print(boundaryLines.shape)
-            print(boundaryLines[:,0])
-           # lines = np.concatenate(boundaryLines[:,0],boundaryLines[:,1])
-            self.lineCollection = collect.LineCollection(boundaryLines[[]])
-            print(self.lineCollection)
+        self.lineCollection = collect.LineCollection(self.lineCoordFormatted,linewidths=1)
+        self.contourAnimationHandler.subplot.add_collection(self.lineCollection)
+        print(self.lineCollection.get_array())
           #  self.contourAnimationHandler.subplot.add_line(ln.Line2D(boundaryLines[:,0],boundaryLines[:,1]))
         return;
 
     def initLines(self):
+        x = self.lineCoord[:,0]
+        y = self.lineCoord[:,1]
+
+
+        self.lineCoordFormatted = list(zip(x,y))
+        print(self.lineCoordFormatted)
+        print(type(self.lineCoordFormatted))
 
         return;
     def loadBoundaryCoord(self,fileNames):
 
         for file in fileNames:
-            print(file)
             d = np.loadtxt(file)
-            print(d)
-            self.lineCoord.append(np.loadtxt(file,dtype=int,delimiter="\t"))
-
+            self.lineCoord.append(d)
         return;
 
     def drawBoundaryCoord(self):
@@ -39,7 +39,8 @@ class zbPeristalsis():
 
     def __init__(self):
         self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
-        self.lineCoord = []
+        self.lineCoord = None
+        self.lineCoordFormatted = None
         self.lineCollection = None
 
         fileNames = []
@@ -48,7 +49,7 @@ class zbPeristalsis():
         fileNames.append("Top.txt")
         self.loadBoundaryCoord(fileNames)
         self.drawBoundaryCoord()
-
+        self.initLines()
         self.contourAnimationHandler.startAnim()
 
 
