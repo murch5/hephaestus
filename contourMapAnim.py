@@ -21,7 +21,7 @@ class contourMapAnim:
 
         print(self.fig)
         print(self.subplot)
-        return
+        return;
 
     def animateContour(self,i):
         self.currFrameIndex += 1

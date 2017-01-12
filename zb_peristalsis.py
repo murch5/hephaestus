@@ -36,12 +36,12 @@ class zbPeristalsis():
 
         return;
 
-    def __init__(self):
+    def __init__(self,data, position):
         self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
         self.lineCoord = []
         self.lineCoordFormatted = []
         self.lineCollection = None
-
+        self.position = position
         fileNames = []
 
         fileNames.append("Bottom.txt")
@@ -53,5 +53,5 @@ class zbPeristalsis():
 
 
 
-test = zbPeristalsis()
+test = zbPeristalsis(None)
 
