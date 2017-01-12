@@ -5,17 +5,17 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 import numpy as np
 import scipy.interpolate
+from contourMap import contourMap
 
-class contourMapAnim:
+class contourMapAnim(contourMap):
 
-    def __init__(self, data, position):
+    def __init__(self,figure,data, position):
+        contourMap.__init__(self,figure,data,position)
         self.frames = data
         self.position = position
         self.currFrame = data[0]
-        self.fig = plt.figure()
-        self.subplot = self.fig.add_subplot(111,aspect='equal')
+        self.fig = figure
         self.animHandler = []
-        self.contourMapBase = ctrmap.contourMap(self.currFrame, self.subplot)
         self.framesPerImage = 1
         self.currFrameIndex = 0
         self.currImageIndex = 0
@@ -42,14 +42,14 @@ class contourMapAnim:
 
             it.iternext()
 
-        self.contourMapBase.setSurfaceData(self.currFrame)
+        self.surfaceData = self.currFrame
         self.subplot.clear()
-        self.contourMapBase.drawContour()
+        contourMap.draw(self)
         return self.subplot
 
     def animateInit(self):
         print("LOG:    Initialize animation")
-        self.contourMapBase.drawContour()
+        contourMap.draw(self)
         return self.subplot
 
     def startAnim(self):
@@ -57,8 +57,6 @@ class contourMapAnim:
         self.animHandler = anim.FuncAnimation(self.fig, self.animateContour,frames = self.framesPerImage*len(self.frames), init_func=self.animateInit)
         plt.show()
         return
-
-    def
 
 
 #sys.stdout = open('log.txt', 'w')

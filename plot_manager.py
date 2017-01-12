@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
-import zb_peristalsis as zb
+
 
 class plot_manager():
 
-    def __init__(self, fig):
+    def __init__(self):
         self.figure = plt.figure()
         self.plotList = []
         self.animHandler = []
@@ -34,3 +34,6 @@ class plot_manager():
 
 
         return;
+
+    def getFigure(self):
+        return self.figure;

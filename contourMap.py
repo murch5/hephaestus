@@ -7,6 +7,7 @@ import generateFrameSet
 
 
 class contourMap:
+
     def initContourMap(self):
         dim = self.surfaceData.shape
 
@@ -18,21 +19,21 @@ class contourMap:
 
         return
 
-    def __init__(self, data, targetSubplot):
-        self.surfaceData = data
+    def __init__(self, figure, data, position):
+        self.surfaceData = data[0]
         self.x = []
         self.y = []
         self.meshX = []
         self.meshY = []
         self.contourPlot = []
 
-        self.subplot = targetSubplot
+        self.subplot = figure.add_subplot(111,aspect='equal')
 
         self.initContourMap()
 
         return
 
-    def drawContour(self):
+    def draw(self):
        # print("LOG:    Draw initial step of contour map")
         self.contourPlot = self.subplot.contour(self.meshX, self.meshY, self.surfaceData.T, zdir='z',linewidths=1,cmap="viridis")
         if self.addLinesFlag == True:
