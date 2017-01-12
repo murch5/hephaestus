@@ -2,13 +2,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import scipy as sp
-
+import animPlot as animPlot
 import generateFrameSet
 
 
-class contourMap:
+class contourMap(animPlot.animPlot):
 
     def initContourMap(self):
+
         dim = self.surfaceData.shape
 
         self.x = np.arange(0, dim[0])
@@ -20,6 +21,7 @@ class contourMap:
         return
 
     def __init__(self, figure, data, position):
+        animPlot.animPlot.__init__(self, figure, data, position)
         self.surfaceData = data[0]
         self.x = []
         self.y = []
@@ -27,7 +29,7 @@ class contourMap:
         self.meshY = []
         self.contourPlot = []
 
-        self.subplot = figure.add_subplot(111,aspect='equal')
+
 
         self.initContourMap()
 
@@ -49,4 +51,32 @@ class contourMap:
         self.addLinesFlag = True
         self.lineDrawFunc = lineFunc
 
+        return;
+
+    def animate(self,i):
+        self.currFrameIndex += 1
+
+        if self.currFrameIndex == self.framesPerImage:
+            self.currFrameIndex = 0
+            self.currImageIndex += 1
+
+        if self.currImageIndex == len(self.frames) - 1:
+            self.currFrameIndex = 0
+            self.currImageIndex = 0
+
+        it = np.nditer(self.currFrame, flags=['multi_index'])
+        while not it.finished:
+            self.currFrame[it.multi_index] = self.frames[self.currImageIndex][it.multi_index] + ((self.frames[(
+            self.currImageIndex + 1)][it.multi_index] - self.frames[self.currImageIndex][it.multi_index]) * (
+                                                                                                 self.currFrameIndex / 20))
+
+            it.iternext()
+
+        self.surfaceData = self.currFrame
+        self.subplot.clear()
+        contourMap.draw(self)
+        return self.subplot
+
+    def initAnimate(self, i):
+        self.draw()
         return;
