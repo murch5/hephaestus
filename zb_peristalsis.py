@@ -16,14 +16,13 @@ class zbPeristalsis():
         return;
 
     def initLines(self):
-        x = self.lineCoord[:,0]
-        y = self.lineCoord[:,1]
+        print(self.lineCoord)
 
-
-        self.lineCoordFormatted = list(zip(x,y))
+        for lineSet in self.lineCoord:
+            x = lineSet[:, 0]
+            y = lineSet[:, 1]
+            self.lineCoordFormatted.append(list(zip(y,x)))
         print(self.lineCoordFormatted)
-        print(type(self.lineCoordFormatted))
-
         return;
     def loadBoundaryCoord(self,fileNames):
 
@@ -39,8 +38,8 @@ class zbPeristalsis():
 
     def __init__(self):
         self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
-        self.lineCoord = None
-        self.lineCoordFormatted = None
+        self.lineCoord = []
+        self.lineCoordFormatted = []
         self.lineCollection = None
 
         fileNames = []
