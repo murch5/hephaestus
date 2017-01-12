@@ -36,8 +36,6 @@ class plot_manager():
 
         for plot in self.plotList:
             plot.animate(i)
-
-
         return;
 
     def getFigure(self):
@@ -45,9 +43,9 @@ class plot_manager():
 
 
 test1 = plot_manager()
-test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),121)
-test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),122)
-test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),222)
+test1.addPlot(zbPeristalsis,gf.generateFrameSet("WT/*.tif"),311)
+test1.addPlot(zbPeristalsis,gf.generateFrameSet("Mut/*.tif"),312)
+test1.addPlot(zbPeristalsis,gf.generateFrameSet("*.tif"),313)
 
 test1.startAnim()
 #test = zbPeristalsis(test1.getFigure(),gf.generateFrameSet("*.tif"),111)
