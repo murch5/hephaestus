@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 class imageStack(animPlot.animPlot):
 
-    def __init__(self,figure, data, position):
+    def __init__(self,figure, data, position, dataDir):
         animPlot.animPlot.__init__(self,figure, data, position)
         self.frames = data
         self.currFrame = data[0]
@@ -28,7 +28,9 @@ class imageStack(animPlot.animPlot):
         self.currFrame = self.frames[i]
 
         self.subplot.clear()
+
         self.subplot.imshow(self.currFrame.T)
+        self.subplot.invert_yaxis()
 
         return;
 

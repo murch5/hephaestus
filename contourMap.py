@@ -37,7 +37,9 @@ class contourMap(animPlot.animPlot):
 
     def draw(self):
        # print("LOG:    Draw initial step of contour map")
-        self.contourPlot = self.subplot.contour(self.meshX, self.meshY, self.surfaceData.T, zdir='z',linewidths=1,cmap="viridis")
+
+        levels =[11,17,20,40,80]
+        self.contourPlot = self.subplot.contour(self.meshX, self.meshY, self.surfaceData.T, zdir='z',linewidths=1,cmap="viridis", levels=levels)
         if self.addLinesFlag == True:
             self.lineDrawFunc()
         return

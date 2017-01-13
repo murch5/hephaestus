@@ -34,6 +34,6 @@ def generateFrameSet(filePath):  # filePath - path of file directory containing 
         print("LOG:    Load image name: " + file)
         frameInt = FlattenTIFFData(generateFrameFromTIFF(file))
         frameFloat = frameInt.astype(float)
-        frames.append(frameFloat)
+        frames.append(frameFloat.T)
     print("LOG:    Returning frames")
     return frames  # return list of frames

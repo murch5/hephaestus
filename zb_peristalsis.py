@@ -10,7 +10,7 @@ class zbPeristalsis(contourMapAnim):
 
     def drawLines(self):
 
-        self.lineCollection = collect.LineCollection(self.lineCoordFormatted,linewidths=1)
+        self.lineCollection = collect.LineCollection(self.lineCoordFormatted,linewidths=1,colors=(0,0,0))
         self.subplot.add_collection(self.lineCollection)
           #  self.contourAnimationHandler.subplot.add_line(ln.Line2D(boundaryLines[:,0],boundaryLines[:,1]))
         return;
@@ -21,7 +21,7 @@ class zbPeristalsis(contourMapAnim):
         for lineSet in self.lineCoord:
             x = lineSet[:, 0]
             y = lineSet[:, 1]
-            self.lineCoordFormatted.append(list(zip(y,x)))
+            self.lineCoordFormatted.append(list(zip(x,y)))
 
         return;
     def loadBoundaryCoord(self,fileNames):
@@ -36,7 +36,7 @@ class zbPeristalsis(contourMapAnim):
 
         return;
 
-    def __init__(self,figure, data, position):
+    def __init__(self,figure, data, position, filePathForBoundaries):
         contourMapAnim.__init__(self,figure,data,position)
         #self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
         self.lineCoord = []
@@ -45,8 +45,8 @@ class zbPeristalsis(contourMapAnim):
         self.position = position
         fileNames = []
 
-        fileNames.append("Bottom.txt")
-        fileNames.append("Top.txt")
+        fileNames.append(filePathForBoundaries + "Bottom.txt")
+        fileNames.append(filePathForBoundaries + "Top.txt")
         self.loadBoundaryCoord(fileNames)
         self.drawBoundaryCoord()
         self.initLines()
