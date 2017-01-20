@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from imageStack import imageStack
+from violin import violin
 import generateFrameSet as gf
 import matplotlib.animation as anim
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
@@ -21,9 +22,9 @@ class plot_manager():
 
 
 
-    def addPlot(self,plotClass,data, position, dataDir):
+    def addPlot(self,plotClass,data, position):
 
-        newPlot = plotClass(self.figure,data, position, dataDir)
+        newPlot = plotClass(self.figure,data, position)
         print(newPlot)
         self.plotList.append(newPlot)
 
@@ -62,8 +63,17 @@ class plot_manager():
         self.plotList[index].addTextAnnotation(text,position,colorMap)
         return;
 
+    def drawPlots(self):
+
+        for plot in self.plotList:
+            plot.draw()
+
+        plt.show()
+        return;
+
 
 
 test1 = plot_manager()
-
-test1.startAnim()
+test1.addPlot(violin,((2,2,3,2,4,6,2),(1,2,2,2,1,1,1)),211)
+test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
+test1.drawPlots()

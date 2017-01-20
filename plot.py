@@ -21,7 +21,8 @@ class plot():
         self.figure = figure
         self.data = data
         self.position = position
-        self.subplot = figure.add_subplot(position, aspect="equal")
+        #self.subplot = figure.add_subplot(position, aspect="equal")
+        self.subplot = figure.add_subplot(position)
         self.txtAnnotations = []
 
 
@@ -46,3 +47,6 @@ class plot():
         newAnnotate = textAnnotate(text,position,colorMap)
         self.txtAnnotations.append(newAnnotate)
         return;
+
+    def getData(self):
+        return self.data
