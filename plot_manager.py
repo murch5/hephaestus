@@ -1,3 +1,4 @@
+
 import matplotlib.pyplot as plt
 from imageStack import imageStack
 from violin import violin
@@ -73,7 +74,7 @@ class plot_manager():
 
 
 
-test1 = plot_manager()
-test1.addPlot(violin,((2,2,3,2,4,6,2),(1,2,2,2,1,1,1)),211)
-test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
-test1.drawPlots()
+#test1 = plot_manager()
+#test1.addPlot(violin,((2,2,3,2,4,6,2),(1,2,2,2,1,1,1)),211)
+#test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
+#test1.drawPlots()
