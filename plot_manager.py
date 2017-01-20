@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from zb_peristalsis import zbPeristalsis
 from imageStack import imageStack
 import generateFrameSet as gf
 import matplotlib.animation as anim
