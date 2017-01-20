@@ -66,14 +66,5 @@ class plot_manager():
 
 
 test1 = plot_manager()
-test1.addPlot(zbPeristalsis,gf.generateFrameSet("WT/*.tif"),121,"WT/")
-test1.addLabel("WT",(10,50),(0,0,0),0)
-test1.addPlot(zbPeristalsis,gf.generateFrameSet("Mut/*.tif"),122,"Mut/")
-test1.addLabel("TTC7A Mut",(10,50),(0,0,0),1)
-test1.addPlot(imageStack,gf.generateFrameSet("WT/*.tif"),221,"")
-test1.addLabel("WT",(10,50),(1,1,1),2)
-test1.addPlot(imageStack,gf.generateFrameSet("Mut/*.tif"),222,"")
-test1.addLabel("TTC7A Mut",(10,50),(1,1,1),3)
 
 test1.startAnim()
-#test = zbPeristalsis(test1.getFigure(),gf.generateFrameSet("*.tif"),111)
