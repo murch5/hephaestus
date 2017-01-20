@@ -1,4 +1,6 @@
-import animPlot as animPlot
+import animPlot as
+import seaborn as sb
+
 
 class violin(animPlot.animPlot):
 
@@ -7,11 +9,13 @@ class violin(animPlot.animPlot):
         return
 
     def animate(self,i):
-        return;
+        return
 
     def draw(self):
-        return;
+
+
+        return
 
     def initAnimate(self, i):
-        return;
+        return
 
