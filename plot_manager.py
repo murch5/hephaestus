@@ -28,7 +28,6 @@ class plot_manager():
     def addPlot(self,plotClass,data, position):
 
         newPlot = plotClass(self.figure,data, position)
-        print(newPlot)
         self.plotList.append(newPlot)
 
 
@@ -84,6 +83,8 @@ class plot_manager():
             self.figure.savefig(self.name+".pdf")
             self.figure.savefig(self.name + ".png")
 
+    def setStyleSheet(self,styleSheet):
+        plt.style.use(styleSheet)
 
 
 #test1 = plot_manager()
