@@ -18,7 +18,14 @@ class violin(animPlot.animPlot):
         print(self.data.iloc[:,0])
         print(type(self.data))
         print(self.data.iloc[:,0])
-        self.violinPlot = sb.violinplot(x=self.data.iloc[:,0],y=self.data.iloc[:,1],ax=self.subplot)
+
+        if(len(self.data.columns)==3):
+            self.violinPlot = sb.violinplot(x=self.data.iloc[:, 1], y=self.data.iloc[:, 2],hue=self.data.iloc[:, 0],split=True,ax=self.subplot)
+        else:
+            self.violinPlot = sb.violinplot(x=self.data.iloc[:,0],y=self.data.iloc[:,1],ax=self.subplot)
+
+            #self.violinPlot = sb.violinplot(data=self.data, ax=self.subplot)
+
 
         return
 

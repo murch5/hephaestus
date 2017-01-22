@@ -2,13 +2,15 @@
 import matplotlib.pyplot as plt
 from imageStack import imageStack
 from violin import violin
+from pie import pie
 import generateFrameSet as gf
 import matplotlib.animation as anim
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 
 class plot_manager():
 
-    def __init__(self):
+    def __init__(self,name):
+        self.name = name
         self.figure = plt.figure(figsize=(8, 4))
         self.plotList = []
         self.animHandler = None
@@ -71,6 +73,16 @@ class plot_manager():
 
         plt.show()
         return;
+
+    def captureImage(self, style):
+
+        if style=="PDF":
+            self.figure.savefig(self.name+".pdf")
+        if style=="PNG":
+            self.figure.savefig(self.name+".png")
+        if style=="Both":
+            self.figure.savefig(self.name+".pdf")
+            self.figure.savefig(self.name + ".png")
 
 
 
