@@ -5,6 +5,7 @@ from violin import violin
 from pie import pie
 import generateFrameSet as gf
 import matplotlib.animation as anim
+import pandas as pd
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 
 class plot_manager():
@@ -13,6 +14,8 @@ class plot_manager():
         self.name = name
         self.figure = plt.figure(figsize=(8, 4))
         self.plotList = []
+        self.viewList = []
+        self.viewLabels = []
         self.animHandler = None
         self.writer = None
         self.framesPerImage = 1
@@ -21,14 +24,34 @@ class plot_manager():
         self.currImageIndex = 0
         self.saveAnimFlag = False
 
+        self.currentView = 0
+
+        self.figure.suptitle(self.name)
+
+
         return;
 
+    def parseViewSet(self,fileName):
 
+        viewSetCoding = pd.read_csv(fileName, sep=",")
 
-    def addPlot(self,plotClass,data, position):
+        return
 
-        newPlot = plotClass(self.figure,data, position)
+    def addView(self,viewTitle):
+
+        newView = []
+        self.viewList.append(newView)
+        self.viewLabels.append(viewTitle)
+
+        return
+
+    def addPlot(self,plotClass,data, position,title="",**opt):
+        newPlot = plotClass(self.figure,data, position, title,**opt)
         self.plotList.append(newPlot)
+
+    def addPlotToView(self, plotClass, data, position, viewID):
+        newPlot = plotClass(self.figure, data, position)
+        self.viewList[viewID].append(newPlot)
 
 
     def startAnim(self):
@@ -45,33 +68,45 @@ class plot_manager():
 
         self.writer = anim.FFMpegWriter(fps=15, bitrate=5000)
         self.animHandler.save("t.mp4",writer=self.writer)
-        return;
+        return
 
     def initAnim(self):
 
-        return;
+        return
 
     def animatePlot(self,i):
 
         for plot in self.plotList:
             plot.animate(i)
             plot.drawText()
-        return;
+        return
 
     def getFigure(self):
-        return self.figure;
+        return self.figure
 
     def addLabel(self,text,position,colorMap,index):
         self.plotList[index].addTextAnnotation(text,position,colorMap)
-        return;
+        return
 
     def drawPlots(self):
 
         for plot in self.plotList:
             plot.draw()
 
-        plt.show()
-        return;
+        return
+
+    def drawView(self):
+
+        currView = self.viewList[self.currentView]
+
+        for plot in currView:
+            plot.draw()
+
+        return
+
+    def setView(self,newView):
+        self.currentView = newView
+        return
 
     def captureImage(self, style):
 
@@ -85,6 +120,10 @@ class plot_manager():
 
     def setStyleSheet(self,styleSheet):
         plt.style.use(styleSheet)
+
+    def showPlot(self):
+       # self.figure.tight_layout()
+        plt.show()
 
 
 #test1 = plot_manager()
