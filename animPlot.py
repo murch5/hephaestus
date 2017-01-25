@@ -8,8 +8,8 @@ class animPlot(plot.plot):
     def draw(self):
         return;
 
-    def __init__(self,figure, data, position):
-        plot.plot.__init__(self,figure, data, position)
+    def __init__(self,figure, data, position,title=""):
+        plot.plot.__init__(self,figure, data, position,title)
         self.frames = data
         self.position = position
         self.currFrame = data

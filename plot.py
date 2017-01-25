@@ -17,14 +17,16 @@ class textAnnotate():
 
 class plot():
 
-    def __init__(self,figure, data, position):
+    def __init__(self,figure, data, position, title):
         self.figure = figure
         self.data = data
         self.position = position
         #self.subplot = figure.add_subplot(position, aspect="equal")
         self.subplot = figure.add_subplot(position)
         self.txtAnnotations = []
+        self.plotTitle = title
 
+        self.subplot.title.set_text(self.plotTitle)
 
     def animate(self,i):
         return;
@@ -50,3 +52,5 @@ class plot():
 
     def getData(self):
         return self.data
+
+
