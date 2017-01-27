@@ -3,14 +3,18 @@ import matplotlib.pyplot as plt
 from imageStack import imageStack
 from violin import violin
 from pie import pie
+from scatter import scatter
 import generateFrameSet as gf
 import matplotlib.animation as anim
 import pandas as pd
+
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 
-class plot_manager():
+chartTypes = {"violin":violin,"pie":pie,"scatter":scatter}
+funcTypes = {"sum":sum}
 
-    def __init__(self,name):
+class plot_manager():
+    def __init__(self, name):
         self.name = name
         self.figure = plt.figure(figsize=(8, 4))
         self.plotList = []
@@ -28,16 +32,15 @@ class plot_manager():
 
         self.figure.suptitle(self.name)
 
-
         return;
 
-    def parseViewSet(self,fileName):
+    def parseViewSet(self, fileName):
 
         viewSetCoding = pd.read_csv(fileName, sep=",")
 
         return
 
-    def addView(self,viewTitle):
+    def addView(self, viewTitle):
 
         newView = []
         self.viewList.append(newView)
@@ -45,36 +48,35 @@ class plot_manager():
 
         return
 
-    def addPlot(self,plotClass,data, position,title="",**opt):
-        newPlot = plotClass(self.figure,data, position, title,**opt)
+    def addPlot(self,title, position, plotClass, data, **opt):
+        newPlot = plotClass(self.figure, data, position, title, **opt)
         self.plotList.append(newPlot)
 
     def addPlotToView(self, plotClass, data, position, viewID):
         newPlot = plotClass(self.figure, data, position)
         self.viewList[viewID].append(newPlot)
 
-
     def startAnim(self):
         mng = plt.get_current_fig_manager()
         mng.window.state('zoomed')
         self.saveAnimFlag = True
-        self.animHandler = anim.FuncAnimation(self.figure, self.animatePlot, frames=self.framesPerImage * self.totalFrames, init_func=self.initAnim)
+        self.animHandler = anim.FuncAnimation(self.figure, self.animatePlot,
+                                              frames=self.framesPerImage * self.totalFrames, init_func=self.initAnim)
         if self.saveAnimFlag == True: self.saveAnimationToFile()
         plt.show()
-        return;
+        return
 
     def saveAnimationToFile(self):
 
-
         self.writer = anim.FFMpegWriter(fps=15, bitrate=5000)
-        self.animHandler.save("t.mp4",writer=self.writer)
+        self.animHandler.save("t.mp4", writer=self.writer)
         return
 
     def initAnim(self):
 
         return
 
-    def animatePlot(self,i):
+    def animatePlot(self, i):
 
         for plot in self.plotList:
             plot.animate(i)
@@ -84,18 +86,19 @@ class plot_manager():
     def getFigure(self):
         return self.figure
 
-    def addLabel(self,text,position,colorMap,index):
-        self.plotList[index].addTextAnnotation(text,position,colorMap)
+    def addLabel(self, text, position, colorMap, index):
+        self.plotList[index].addTextAnnotation(text, position, colorMap)
         return
 
     def drawPlots(self):
-
+        print("test")
         for plot in self.plotList:
             plot.draw()
 
         return
 
     def drawView(self):
+
 
         currView = self.viewList[self.currentView]
 
@@ -104,29 +107,28 @@ class plot_manager():
 
         return
 
-    def setView(self,newView):
+    def setView(self, newView):
         self.currentView = newView
         return
 
     def captureImage(self, style):
 
-        if style=="PDF":
-            self.figure.savefig(self.name+".pdf")
-        if style=="PNG":
-            self.figure.savefig(self.name+".png")
-        if style=="Both":
-            self.figure.savefig(self.name+".pdf")
+        if style == "PDF":
+            self.figure.savefig(self.name + ".pdf")
+        if style == "PNG":
+            self.figure.savefig(self.name + ".png")
+        if style == "Both":
+            self.figure.savefig(self.name + ".pdf")
             self.figure.savefig(self.name + ".png")
 
-    def setStyleSheet(self,styleSheet):
+    def setStyleSheet(self, styleSheet):
         plt.style.use(styleSheet)
 
     def showPlot(self):
-       # self.figure.tight_layout()
+        # self.figure.tight_layout()
         plt.show()
 
-
-#test1 = plot_manager()
-#test1.addPlot(violin,((2,2,3,2,4,6,2),(1,2,2,2,1,1,1)),211)
-#test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
-#test1.drawPlots()
+# test1 = plot_manager()
+# test1.addPlot(violin,((2,2,3,2,4,6,2),(1,2,2,2,1,1,1)),211)
+# test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
+# test1.drawPlots()
