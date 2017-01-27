@@ -9,7 +9,8 @@ class scatter(animPlot.animPlot):
         print(0)
 
     def draw(self):
-        sb.regplot(x=self.data.iloc[:,0],y=self.data.iloc[:, 1],fit_reg=True,ax=self.subplot)
+
+        sb.regplot(x=self.data.ix[:,0],y=self.data.ix[:, 1],fit_reg=True,ax=self.subplot)
 
     def initAnimate(self):
         print(0)
