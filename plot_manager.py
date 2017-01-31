@@ -16,7 +16,7 @@ funcTypes = {"sum":sum}
 class plot_manager():
     def __init__(self, name):
         self.name = name
-        self.figure = plt.figure(figsize=(8, 4))
+        self.figure = plt.figure(figsize=(10, 8))
         self.plotList = []
         self.viewList = []
         self.viewLabels = []
@@ -125,7 +125,7 @@ class plot_manager():
         plt.style.use(styleSheet)
 
     def showPlot(self):
-        # self.figure.tight_layout()
+
         plt.show()
 
 # test1 = plot_manager()
