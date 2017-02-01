@@ -4,13 +4,14 @@ from imageStack import imageStack
 from violin import violin
 from pie import pie
 from scatter import scatter
+from forest import forest
 import generateFrameSet as gf
 import matplotlib.animation as anim
 import pandas as pd
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 
-chartTypes = {"violin":violin,"pie":pie,"scatter":scatter}
+chartTypes = {"violin":violin,"pie":pie,"scatter":scatter, "forest":forest}
 funcTypes = {"sum":sum}
 
 class plot_manager():
@@ -128,7 +129,6 @@ class plot_manager():
 
         plt.show()
 
-# test1 = plot_manager()
-# test1.addPlot(violin,((2,2,3,2,4,6,2),(1,2,2,2,1,1,1)),211)
+
 # test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
 # test1.drawPlots()
