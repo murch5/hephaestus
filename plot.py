@@ -1,10 +1,11 @@
-
+import matplotlib.gridspec as gridspec
 
 class textAnnotate():
     def __init__(self,text,position,colorMap):
         self.text = text
         self.position = position
         self.colorMap = colorMap
+
 
     def getText(self):
         return self.text;
@@ -21,8 +22,16 @@ class plot():
         self.figure = figure
         self.data = data
         self.position = position
+        self.gridSpec = []
+
+        self.subplot = self.setupSubplot()
+
         #self.subplot = figure.add_subplot(position, aspect="equal")
-        self.subplot = figure.add_subplot(position)
+        print(self.position[2])
+        print(type(self.position[2]))
+        print(int(self.position[2]))
+        print(int(self.position[3]))
+        #self.subplot = figure.add_subplot(self.gridSpec[int(self.position[2]),int(self.position[3])])
         self.txtAnnotations = []
         self.plotTitle = title
 
@@ -53,4 +62,12 @@ class plot():
     def getData(self):
         return self.data
 
+    def setupSubplot(self):
 
+        self.gridSpec = gridspec.GridSpec(int(self.position[0]),int(self.position[1]))
+
+        subplotspec = self.gridSpec.new_subplotspec([int(self.position[2]),int(self.position[3])], int(self.position[4]), int(self.position[5]))
+
+        subplotNew = self.figure.add_subplot(subplotspec)
+
+        return subplotNew
