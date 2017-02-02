@@ -18,7 +18,7 @@ class textAnnotate():
 
 class plot():
 
-    def __init__(self,figure, data, position, title):
+    def __init__(self,figure, data, position, title, **plotArgs):
         self.figure = figure
         self.data = data
         self.position = position

@@ -4,8 +4,8 @@ import pandas as pd
 
 class pie(animPlot.animPlot):
 
-    def __init__(self, figure, data, position, title="", explode=0):
-        animPlot.animPlot.__init__(self, figure, data, position,title)
+    def __init__(self, figure, data, position, title="",**plotArgs):
+        animPlot.animPlot.__init__(self, figure, data, position,title, **plotArgs)
         self.explode = explode
         self.NaNindices = self.data.isnull()
         self.numNan = np.sum(self.NaNindices)
