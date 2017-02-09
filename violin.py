@@ -4,8 +4,8 @@ import seaborn as sb
 
 class violin(animPlot.animPlot):
 
-    def __init__(self, figure, data, position , title="",**plotArgs):
-        animPlot.animPlot.__init__(self, figure, data, position,title,**plotArgs)
+    def __init__(self, figure, data, position , title="",plotArgs=[]):
+        animPlot.animPlot.__init__(self, figure, data, position,title,plotArgs)
         self.violinPlot = 0
         return
 

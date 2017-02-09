@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 class imageStack(animPlot.animPlot):
 
-    def __init__(self,figure, data, position, dataDir):
-        animPlot.animPlot.__init__(self,figure, data, position)
+    def __init__(self,figure, data, position, dataDir,plotArgs=[]):
+        animPlot.animPlot.__init__(self,figure, data, position,plotArgs)
         self.frames = data
         self.currFrame = data[0]
         self.framesPerImage = 1

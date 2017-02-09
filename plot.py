@@ -1,10 +1,12 @@
 import matplotlib.gridspec as gridspec
+import pandas as pd
 
 class textAnnotate():
     def __init__(self,text,position,colorMap):
         self.text = text
         self.position = position
         self.colorMap = colorMap
+        self.argList = []
 
 
     def getText(self):
@@ -18,19 +20,19 @@ class textAnnotate():
 
 class plot():
 
-    def __init__(self,figure, data, position, title, **plotArgs):
+    def __init__(self,figure, data, position, title, plotArgs=[]):
         self.figure = figure
-        self.data = data
+        self.data = data[:]
         self.position = position
         self.gridSpec = []
+        self.argFlag = False
+        self.argList = self.parseArgs(plotArgs)
+
 
         self.subplot = self.setupSubplot()
 
         #self.subplot = figure.add_subplot(position, aspect="equal")
-        print(self.position[2])
-        print(type(self.position[2]))
-        print(int(self.position[2]))
-        print(int(self.position[3]))
+
         #self.subplot = figure.add_subplot(self.gridSpec[int(self.position[2]),int(self.position[3])])
         self.txtAnnotations = []
         self.plotTitle = title
@@ -71,3 +73,27 @@ class plot():
         subplotNew = self.figure.add_subplot(subplotspec)
 
         return subplotNew
+
+    def parseArgs(self, args):
+
+        argPD = pd.Series(args)
+        argList = []
+        if argPD.any():
+            for i in argPD:
+
+                if i!=0:
+                    q = i.split("=", 1)
+                    argList.append(q)
+
+        if argList[0][0]!="0":
+            argList = dict(argList)
+            self.argFlag = True
+        else:
+            argList = {0:0}
+
+        return argList
+
+    def retrieveArgVal(self,argID):
+
+        return self.argList.get(argID)
+
