@@ -52,9 +52,6 @@ class forest(animPlot.animPlot):
                             relpos=(0.2, 0.8),
                             connectionstyle="arc3,rad=-0.1"))
 
-
-
-
         return
     def initAnimate(self):
         print(0)

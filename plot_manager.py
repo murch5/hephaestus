@@ -5,6 +5,7 @@ from violin import violin
 from pie import pie
 from scatter import scatter
 from forest import forest
+from contourMap import contourMap
 import generateFrameSet as gf
 import matplotlib.animation as anim
 import pandas as pd
@@ -13,7 +14,7 @@ import seaborn as sb
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 plt.rcParams['image.cmap'] = 'gray'
 
-chartTypes = {"violin":violin,"pie":pie,"scatter":scatter, "forest":forest}
+chartTypes = {"violin":violin,"pie":pie,"scatter":scatter, "forest":forest, "contour":contourMap}
 funcTypes = {"sum":sum}
 
 class plot_manager():
