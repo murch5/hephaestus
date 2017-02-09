@@ -8,8 +8,10 @@ from forest import forest
 import generateFrameSet as gf
 import matplotlib.animation as anim
 import pandas as pd
+import seaborn as sb
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
+plt.rcParams['image.cmap'] = 'gray'
 
 chartTypes = {"violin":violin,"pie":pie,"scatter":scatter, "forest":forest}
 funcTypes = {"sum":sum}
@@ -33,6 +35,8 @@ class plot_manager():
 
         self.figure.suptitle(self.name)
 
+        self.setStyleSheet("seaborn-pastel")
+
         return;
 
     def parseViewSet(self, fileName):
@@ -49,8 +53,8 @@ class plot_manager():
 
         return
 
-    def addPlot(self,title, position, plotClass, data, **opt):
-        newPlot = plotClass(self.figure, data, position, title, **opt)
+    def addPlot(self,title, position, plotClass, data, plotArgs):
+        newPlot = plotClass(self.figure, data, position, title, plotArgs)
         self.plotList.append(newPlot)
 
     def addPlotToView(self, plotClass, data, position, viewID):
@@ -92,7 +96,7 @@ class plot_manager():
         return
 
     def drawPlots(self):
-        print("test")
+
         for plot in self.plotList:
             plot.draw()
 
@@ -124,6 +128,9 @@ class plot_manager():
 
     def setStyleSheet(self, styleSheet):
         plt.style.use(styleSheet)
+        sb.set_style("white")
+        sb.set_style("ticks")
+        sb.despine()
 
     def showPlot(self):
 
