@@ -6,7 +6,7 @@ class scatter(animPlot.animPlot):
 
     def __init__(self,figure,data,position, title="",plotArgs=[]):
         animPlot.animPlot.__init__(self,figure,data,position,title,plotArgs)
-        print(0)
+
 
     def draw(self):
 
