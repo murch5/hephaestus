@@ -6,6 +6,9 @@ from pie import pie
 from scatter import scatter
 from forest import forest
 from contourMap import contourMap
+from imageStack import imageStack
+from zb_peristalsis import zbPeristalsis
+
 import generateFrameSet as gf
 import matplotlib.animation as anim
 import pandas as pd
@@ -14,7 +17,7 @@ import seaborn as sb
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 plt.rcParams['image.cmap'] = 'gray'
 
-chartTypes = {"violin":violin,"pie":pie,"scatter":scatter, "forest":forest, "contour":contourMap}
+chartTypes = {"violin":violin,"pie":pie,"scatter":scatter, "forest":forest, "contour":contourMap, "imageStack":imageStack, "zbperistalsis":zbPeristalsis}
 funcTypes = {"sum":sum}
 
 class plot_manager():
