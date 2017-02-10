@@ -84,12 +84,16 @@ class plot():
                 if i!=0:
                     q = i.split("=", 1)
                     argList.append(q)
+        print(argList)
+        if(len(argList)>0):
 
-        if argList[0][0]!="0":
-            argList = dict(argList)
-            self.argFlag = True
+            if argList[0][0]!="0":
+                argList = dict(argList)
+                self.argFlag = True
+            else:
+                argList = {0:0}
         else:
-            argList = {0:0}
+            argList = {0: 0}
 
         return argList
 
