@@ -9,21 +9,24 @@ from contourMap import contourMap
 from imageStack import imageStack
 from zb_peristalsis import zbPeristalsis
 
+from image import image
+
 import generateFrameSet as gf
 import matplotlib.animation as anim
 import pandas as pd
 import seaborn as sb
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
-plt.rcParams['image.cmap'] = 'gray'
+plt.rcParams['image.cmap'] = 'magma'
 
-chartTypes = {"violin":violin,"pie":pie,"scatter":scatter, "forest":forest, "contour":contourMap, "imageStack":imageStack, "zbperistalsis":zbPeristalsis}
-funcTypes = {"sum":sum}
+chartTypes = {"violin": violin, "pie": pie, "scatter": scatter, "forest": forest, "contour": contourMap,
+              "imageStack": imageStack, "zbperistalsis": zbPeristalsis, "image":image}
+funcTypes = {"sum": sum}
 
 class plot_manager():
     def __init__(self, name):
         self.name = name
-        self.figure = plt.figure(figsize=(10, 8))
+        self.figure = plt.figure(figsize=(11, 9))
         self.plotList = []
         self.viewList = []
         self.viewLabels = []
@@ -37,11 +40,20 @@ class plot_manager():
 
         self.currentView = 0
 
+       # self.cid = self.figure.canvas.mpl_connect('resize_event', self.onResize)
         self.figure.suptitle(self.name)
 
         self.setStyleSheet("seaborn-pastel")
 
-        return;
+        return
+
+    def onResize(self,event):
+        print("Resizing...")
+        self.drawPlots()
+        self.figure.canvas.flush_events()
+        return
+
+
 
     def parseViewSet(self, fileName):
 
@@ -77,6 +89,7 @@ class plot_manager():
 
     def saveAnimationToFile(self):
 
+       # vidFileName = "View_" + self.
         self.writer = anim.FFMpegWriter(fps=15, bitrate=5000)
         self.animHandler.save("t.mp4", writer=self.writer)
         return
