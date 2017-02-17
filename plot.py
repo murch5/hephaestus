@@ -1,5 +1,6 @@
 import matplotlib.gridspec as gridspec
 import pandas as pd
+import numpy as np
 
 class textAnnotate():
     def __init__(self,text,position,colorMap):
@@ -27,6 +28,17 @@ class plot():
         self.gridSpec = []
         self.argFlag = False
         self.argList = self.parseArgs(plotArgs)
+        self.showX = True
+        self.showY = True
+        self.invertX = False
+        self.invertY = False
+        self.showYlabels = True
+        self.showXlabels = True
+        self.showTitle = True
+        self.insetLabel = False
+
+
+
 
 
         self.subplot = self.setupSubplot()
@@ -37,7 +49,38 @@ class plot():
         self.txtAnnotations = []
         self.plotTitle = title
 
-        self.subplot.title.set_text(self.plotTitle)
+        if self.retrieveArgVal("insetLabel") is not None: self.insetLabel = True
+
+        print(self.retrieveArgVal("hideTitle"))
+        if self.retrieveArgVal("hideTitle") is not None: self.showTitle = False
+
+        if self.showTitle == True: self.subplot.title.set_text(self.plotTitle)
+
+        if self.showTitle == False: self.subplot.title.set_text("")
+
+        if self.retrieveArgVal("hideX") is not None: self.showX = False
+        if self.retrieveArgVal("hideY") is not None: self.showY = False
+
+        if self.retrieveArgVal("invertX") is not None: self.invertX = True; self.subplot.invert_xaxis()
+        if self.retrieveArgVal("invertY") is not None: self.invertY = True; self.subplot.invert_yaxis()
+
+        self.subplot.get_xaxis().set_visible(self.showX)
+        self.subplot.get_yaxis().set_visible(self.showY)
+
+        if self.showXlabels == False: self.subplot.axes.get_xaxis().set_ticklabels([])
+        if self.showYlabels == False: self.subplot.axes.get_yaxis().set_ticklabels([])
+
+
+        if self.retrieveArgVal("xlim") is not None:
+            self.xlim = np.fromstring(self.retrieveArgVal("xlim"),sep=":")
+        else:
+            self.xlim = []
+        if self.retrieveArgVal("ylim") is not None:
+            self.ylim = np.fromstring(self.retrieveArgVal("ylim"),sep=":")
+        else:
+            self.ylim = []
+
+
 
     def animate(self,i):
         return;
@@ -84,7 +127,7 @@ class plot():
                 if i!=0:
                     q = i.split("=", 1)
                     argList.append(q)
-        print(argList)
+
         if(len(argList)>0):
 
             if argList[0][0]!="0":
