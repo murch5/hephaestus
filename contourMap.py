@@ -2,11 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import scipy as sp
-import animPlot as animPlot
+import image as image
 import generateFrameSet
 
 
-class contourMap(animPlot.animPlot):
+class contourMap(image.image):
 
     def initContourMap(self):
 
@@ -21,13 +21,16 @@ class contourMap(animPlot.animPlot):
         return
 
     def __init__(self, figure, data, position,title="",plotArgs=[]):
-        animPlot.animPlot.__init__(self, figure, data, position,title,plotArgs)
+        image.image.__init__(self, figure, data, position,title,plotArgs)
         self.surfaceData = data[0]
+        self.currFrame = data[0]
         self.x = []
         self.y = []
         self.meshX = []
         self.meshY = []
         self.contourPlot = []
+
+        self.subplot.axis("equal")
 
         self.initContourMap()
 
@@ -35,15 +38,32 @@ class contourMap(animPlot.animPlot):
 
     def draw(self):
        # print("LOG:    Draw initial step of contour map")
-
+        self.subplot.cla()
         levels =[11,17,20,40,80]
         self.contourPlot = self.subplot.contour(self.meshX, self.meshY, self.surfaceData.T, zdir='z',linewidths=1,cmap="viridis", levels=levels)
+        self.image = self.contourPlot
         if self.addLinesFlag == True:
             self.lineDrawFunc()
+
+        if self.retrieveArgVal("colorBar") is not None:
+            self.clearColorBar()
+            self.addColorBar(self.contourPlot)
+
+        self.colorBar.outline.set_linewidth(0.2)
+        for line in self.colorBar.lines:
+            line.set_linewidth(5.0)
+
+        if len(self.xlim) > 0:
+            self.subplot.set_xlim(self.xlim)
+        if len(self.ylim) > 0:
+            self.subplot.set_ylim(self.ylim)
+
+        self.subplot.invert_yaxis()
+
         return
 
     def setSurfaceData(self, data):
-        self.surfaceData = data
+        self.surfaceData = data.T
         return
 
     def assignLineDrawFunc(self,lineFunc):
@@ -55,6 +75,7 @@ class contourMap(animPlot.animPlot):
 
     def animate(self,i):
         self.currFrameIndex += 1
+
 
         if self.currFrameIndex == self.framesPerImage:
             self.currFrameIndex = 0
@@ -74,7 +95,9 @@ class contourMap(animPlot.animPlot):
 
         self.surfaceData = self.currFrame
         self.subplot.clear()
-        contourMap.draw(self)
+
+        self.draw()
+
         return self.subplot
 
     def initAnimate(self, i):
