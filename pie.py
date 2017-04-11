@@ -6,13 +6,14 @@ import matplotlib.pyplot as plt
 
 class pie(animPlot.animPlot):
 
-    def __init__(self, figure, data, position, title="",plotArgs=[]):
-        animPlot.animPlot.__init__(self, figure, data, position,title, plotArgs)
+    def __init__(self, figure, data, position, title="",plotArgs=[],annotate=[]):
+        animPlot.animPlot.__init__(self, figure, data, position,title, plotArgs,annotate)
         self.explode = self.retrieveArgVal("explode")
         self.NaNindices = self.data.isnull()
         self.numNan = np.sum(self.NaNindices)
         self.dataCleaned = self.data[self.data.notnull()]
         self.labels = pd.DataFrame(self.dataCleaned.index.tolist())
+        print(self.labels)
         self.labels.columns = ["Labels"]
         self.pctFilter = 1
 
@@ -60,10 +61,15 @@ class pie(animPlot.animPlot):
             if labelsToKeep is not None:
                 self.labels.replace(labelsToKeep," ",inplace=True)
 
-        if self.explode != 0 and self.explode != -1:
-            self.subplot.pie(self.dataCleaned,labels=self.labels.ix[:,0], startangle=90, explode=self.explode, autopct=make_autopct(self.dataCleaned))
+        if len(self.dataCleaned) % 2 == 0:
+            colorWedge = ["#9F4298", "#D1AFD3"]
         else:
-            self.subplot.pie(self.dataCleaned, labels=self.labels.ix[:,0], startangle=90,autopct=make_autopct(self.dataCleaned))
+            colorWedge = ["#9F4298", "#D1AFD3","#E6E7E8"]
+
+        if self.explode != 0 and self.explode != -1:
+            self.subplot.pie(self.dataCleaned,labels=self.labels.ix[:,0], startangle=90, explode=self.explode, autopct=make_autopct(self.dataCleaned),colors=colorWedge)
+        else:
+            self.subplot.pie(self.dataCleaned, labels=self.labels.ix[:,0], startangle=90,autopct=make_autopct(self.dataCleaned),colors=colorWedge)
 
         self.subplot.axis("equal")
 
