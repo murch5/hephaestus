@@ -8,8 +8,13 @@ from forest import forest
 from contourMap import contourMap
 from imageStack import imageStack
 from zb_peristalsis import zbPeristalsis
-
+from swarmInterval import swarmInterval
+from survival import survival
+from track import track
+from DNAtrack import DNAtrack
+from proteinTrack import proteinTrack
 from image import image
+from variantTrack import variantTrack
 
 import generateFrameSet as gf
 import matplotlib.animation as anim
@@ -20,11 +25,13 @@ plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 plt.rcParams['image.cmap'] = 'magma'
 
 chartTypes = {"violin": violin, "pie": pie, "scatter": scatter, "forest": forest, "contour": contourMap,
-              "imageStack": imageStack, "zbperistalsis": zbPeristalsis, "image":image}
+              "imageStack": imageStack, "zbperistalsis": zbPeristalsis, "image": image, "swarmInterval": swarmInterval,
+              "survival": survival, "track": track, "proteinTrack": proteinTrack, "DNAtrack": DNAtrack, "variantTrack": variantTrack}
 funcTypes = {"sum": sum}
 
+
 class plot_manager():
-    def __init__(self, name):
+    def __init__(self, name, figureArgs):
         self.name = name
         self.figure = plt.figure(figsize=(11, 9))
         self.plotList = []
@@ -37,13 +44,20 @@ class plot_manager():
         self.currFrameIndex = 0
         self.currImageIndex = 0
         self.saveAnimFlag = False
+        self.figArgList = self.parseArgs(figureArgs)
+
+        print(self.figArgList)
 
         self.currentView = 0
 
        # self.cid = self.figure.canvas.mpl_connect('resize_event', self.onResize)
-        self.figure.suptitle(self.name)
+        #if self.retrieveArgVal("hideTitle") is not None: self.figure.suptitle("")
+       # else:   self.figure.suptitle(self.name)
+
 
         self.setStyleSheet("seaborn-pastel")
+
+        self.evaluateFigureArgs()
 
         return
 
@@ -69,8 +83,8 @@ class plot_manager():
 
         return
 
-    def addPlot(self,title, position, plotClass, data, plotArgs):
-        newPlot = plotClass(self.figure, data, position, title, plotArgs)
+    def addPlot(self,title, position, plotClass, data, plotArgs, annotate):
+        newPlot = plotClass(self.figure, data, position, title, plotArgs, annotate)
         self.plotList.append(newPlot)
 
     def addPlotToView(self, plotClass, data, position, viewID):
@@ -102,7 +116,7 @@ class plot_manager():
 
         for plot in self.plotList:
             plot.animate(i)
-            plot.drawText()
+            plot.annotate()
         return
 
     def getFigure(self):
@@ -116,6 +130,7 @@ class plot_manager():
 
         for plot in self.plotList:
             plot.draw()
+            plot.annotate()
 
         return
 
@@ -152,6 +167,42 @@ class plot_manager():
     def showPlot(self):
 
         plt.show()
+
+    def parseArgs(self, args):
+
+        print(args)
+        argPD = pd.Series(args)
+        argList = []
+        if argPD.any():
+            for i in argPD:
+
+                if i!=0:
+                    q = i.split("=", 1)
+                    argList.append(q)
+
+        if(len(argList)>0):
+
+            if argList[0][0]!="0":
+                argList = dict(argList)
+                self.argFlag = True
+            else:
+                argList = {0:0}
+        else:
+            argList = {0: 0}
+
+        return argList
+
+    def retrieveArgVal(self,argID):
+
+        return self.figArgList.get(argID)
+
+    def evaluateFigureArgs(self):
+
+        if self.retrieveArgVal("hideTitle") is not None:
+            self.figure.suptitle("")
+
+
+        return
 
 
 # test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
