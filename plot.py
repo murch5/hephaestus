@@ -2,6 +2,9 @@ import matplotlib.gridspec as gridspec
 import pandas as pd
 import numpy as np
 
+import annotation as annotation
+
+
 class textAnnotate():
     def __init__(self,text,position,colorMap):
         self.text = text
@@ -21,9 +24,9 @@ class textAnnotate():
 
 class plot():
 
-    def __init__(self,figure, data, position, title, plotArgs=[]):
+    def __init__(self,figure, data, position, title, plotArgs=[],annotate=[]):
         self.figure = figure
-        self.data = data[:]
+        self.data = self.assignData(data)
         self.position = position
         self.gridSpec = []
         self.argFlag = False
@@ -37,11 +40,15 @@ class plot():
         self.showTitle = True
         self.insetLabel = False
 
+        self.xLabel = None
+        self.yLabel = None
 
-
+        self.colorMap = self.retrieveArgVal("cmap")
 
 
         self.subplot = self.setupSubplot()
+
+        self.annotation = annotation.annotation(annotate, self.subplot)
 
         #self.subplot = figure.add_subplot(position, aspect="equal")
 
@@ -49,9 +56,23 @@ class plot():
         self.txtAnnotations = []
         self.plotTitle = title
 
+        self.setPlotLevelProperties()
+
+        return
+
+    def assignData(self,data):
+
+        print(type(data))
+        if isinstance(data,object):
+            newdata = data
+        else:
+            newdata = data[:]
+
+        return newdata
+    def setPlotLevelProperties(self):
+
         if self.retrieveArgVal("insetLabel") is not None: self.insetLabel = True
 
-        print(self.retrieveArgVal("hideTitle"))
         if self.retrieveArgVal("hideTitle") is not None: self.showTitle = False
 
         if self.showTitle == True: self.subplot.title.set_text(self.plotTitle)
@@ -61,11 +82,18 @@ class plot():
         if self.retrieveArgVal("hideX") is not None: self.showX = False
         if self.retrieveArgVal("hideY") is not None: self.showY = False
 
+        if self.retrieveArgVal("hideXlabel") is not None: self.showXlabels = False; self.subplot.set_xlabel("")
+        if self.retrieveArgVal("hideYlabel") is not None: self.showYlabels = False; self.subplot.set_ylabel("")
+
+        if self.retrieveArgVal("xLabel") is not None: self.xLabel = self.retrieveArgVal("xLabel"); self.subplot.set_xlabel(self.xLabel)
+        if self.retrieveArgVal("yLabel") is not None: self.yLabel = self.retrieveArgVal("xLabel"); self.subplot.set_ylabel(self.yLabel)
+
         if self.retrieveArgVal("invertX") is not None: self.invertX = True; self.subplot.invert_xaxis()
         if self.retrieveArgVal("invertY") is not None: self.invertY = True; self.subplot.invert_yaxis()
 
         self.subplot.get_xaxis().set_visible(self.showX)
         self.subplot.get_yaxis().set_visible(self.showY)
+
 
         if self.showXlabels == False: self.subplot.axes.get_xaxis().set_ticklabels([])
         if self.showYlabels == False: self.subplot.axes.get_yaxis().set_ticklabels([])
@@ -73,16 +101,20 @@ class plot():
 
         if self.retrieveArgVal("xlim") is not None:
             self.xlim = np.fromstring(self.retrieveArgVal("xlim"),sep=":")
+            self.subplot.set_xlim(self.xlim)
         else:
             self.xlim = []
         if self.retrieveArgVal("ylim") is not None:
             self.ylim = np.fromstring(self.retrieveArgVal("ylim"),sep=":")
+            self.subplot.set_ylim(self.ylim)
         else:
             self.ylim = []
 
 
+        return
 
     def animate(self,i):
+
         return;
 
     def initAnimate(self, i):
@@ -93,6 +125,13 @@ class plot():
 
     def init(self):
         return;
+
+    def annotate(self):
+
+        if self.annotation is not None:
+            self.annotation.annotate()
+
+        return
 
     def drawText(self):
         for text in self.txtAnnotations:
