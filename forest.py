@@ -7,8 +7,8 @@ import pandas as pd
 #data format:  [Label,Odds Ratio,Lower Confidence Interval, Upper Confidence Interval]
 class forest(animPlot.animPlot):
 
-    def __init__(self, figure, data, position,title="",plotArgs=[]):
-        animPlot.animPlot.__init__(self, figure, data, position,title,plotArgs)
+    def __init__(self, figure, data, position,title="",plotArgs=[],annotate=[]):
+        animPlot.animPlot.__init__(self, figure, data, position,title,plotArgs,annotate)
 
         #self.initializeForest()
 

@@ -6,10 +6,9 @@ import numpy as np
 
 class image(animPlot.animPlot):
 
-    def __init__(self,figure, data, position, title="",plotArgs=[]):
-        animPlot.animPlot.__init__(self,figure, data, position,title,plotArgs)
+    def __init__(self,figure, data, position, title="",plotArgs=[],annotate=[]):
+        animPlot.animPlot.__init__(self,figure, data, position,title,plotArgs,annotate)
         self.data = data
-        self.colorMap = self.retrieveArgVal("cmap")
         self.colorBar = 0
         self.colorBarAx = 0
         self.luminMin = None
@@ -55,8 +54,6 @@ class image(animPlot.animPlot):
     def draw(self):
         self.subplot.clear()
 
-
-        print(self.data)
         self.image = self.subplot.imshow(self.data.T,cmap=plt.get_cmap(self.colorMap),norm=self.normalize)
 
         if len(self.xlim) > 0:

@@ -4,8 +4,8 @@ import matplotlib as plt
 
 class scatter(animPlot.animPlot):
 
-    def __init__(self,figure,data,position, title="",plotArgs=[]):
-        animPlot.animPlot.__init__(self,figure,data,position,title,plotArgs)
+    def __init__(self,figure,data,position, title="",plotArgs=[],annotate=[]):
+        animPlot.animPlot.__init__(self,figure,data,position,title,plotArgs,annotate)
 
 
     def draw(self):

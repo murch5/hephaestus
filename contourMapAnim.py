@@ -9,8 +9,8 @@ from contourMap import contourMap
 
 class contourMapAnim(contourMap):
 
-    def __init__(self, figure, data, position,title="",plotArgs=[]):
-        contourMap.__init__(self,figure,data,position,title,plotArgs)
+    def __init__(self, figure, data, position,title="",plotArgs=[],annotate=[]):
+        contourMap.__init__(self,figure,data,position,title,plotArgs,annotate)
         self.frames = data
         self.position = position
         self.currFrame = data[0]

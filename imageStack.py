@@ -4,8 +4,8 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 class imageStack(image.image):
 
-    def __init__(self,figure, data, position, title="",plotArgs=[]):
-        image.image.__init__(self,figure, data, position,title,plotArgs)
+    def __init__(self,figure, data, position, title="",plotArgs=[],annotate=[]):
+        image.image.__init__(self,figure, data, position,title,plotArgs,annotate)
         self.frames = data
         self.currFrame = data[0]
         self.framesPerImage = 1
