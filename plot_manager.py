@@ -15,6 +15,7 @@ from DNAtrack import DNAtrack
 from proteinTrack import proteinTrack
 from image import image
 from variantTrack import variantTrack
+from clusterMap import clusterMap
 
 import generateFrameSet as gf
 import matplotlib.animation as anim
@@ -26,7 +27,7 @@ plt.rcParams['image.cmap'] = 'magma'
 
 chartTypes = {"violin": violin, "pie": pie, "scatter": scatter, "forest": forest, "contour": contourMap,
               "imageStack": imageStack, "zbperistalsis": zbPeristalsis, "image": image, "swarmInterval": swarmInterval,
-              "survival": survival, "track": track, "proteinTrack": proteinTrack, "DNAtrack": DNAtrack, "variantTrack": variantTrack}
+              "survival": survival, "track": track, "proteinTrack": proteinTrack, "DNAtrack": DNAtrack, "variantTrack": variantTrack, "clusterMap":clusterMap}
 funcTypes = {"sum": sum}
 
 
