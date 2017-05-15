@@ -22,8 +22,6 @@ class venn(plot.plot):
             setNames = self.data.columns.values.tolist()
             self.venn = plotvenn.venn3([set1, set2,set3],ax=self.subplot, set_labels=setNames)
 
-
-
         return;
 
     def __init__(self,figure, data, position,title="",plotArgs=[],annotate=[]):
