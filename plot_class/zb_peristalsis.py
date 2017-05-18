@@ -1,9 +1,8 @@
-import contourMapAnim as cm
 
 import numpy as np
 from matplotlib import lines as ln
 import matplotlib.collections as collect
-from contourMapAnim import contourMapAnim
+from plot_class.contourMapAnim import contourMapAnim
 
 
 class zbPeristalsis(contourMapAnim):

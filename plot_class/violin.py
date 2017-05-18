@@ -1,4 +1,4 @@
-import animPlot as animPlot
+import plot_class.animPlot as animPlot
 import seaborn as sb
 
 

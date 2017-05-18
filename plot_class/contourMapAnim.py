@@ -1,11 +1,11 @@
-import contourMap as ctrmap
+import plot_class.contourMap as ctrmap
 import generateFrameSet
 import sys
 import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 import numpy as np
 import scipy.interpolate
-from contourMap import contourMap
+from plot_class.contourMap import contourMap
 
 class contourMapAnim(contourMap):
 

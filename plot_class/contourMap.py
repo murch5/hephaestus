@@ -1,9 +1,8 @@
-import matplotlib.pyplot as plt
 import numpy as np
-import sys
-import scipy as sp
-import image as image
-import generateFrameSet
+from plot_class import image as image
+import numpy as np
+
+from plot_class import image as image
 
 
 class contourMap(image.image):
@@ -21,7 +20,7 @@ class contourMap(image.image):
         return
 
     def __init__(self, figure, data, position,title="",plotArgs=[],annotate=[]):
-        image.image.__init__(self, figure, data, position,title,plotArgs,annotate)
+        image.image.__init__(self, figure, data, position, title, plotArgs, annotate)
         self.surfaceData = data[0]
         self.currFrame = data[0]
         self.x = []

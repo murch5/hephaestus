@@ -1,4 +1,4 @@
-import plot as plot
+import plot_class.plot as plot
 
 class animPlot(plot.plot):
 

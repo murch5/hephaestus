@@ -1,7 +1,7 @@
 #Using matplotlib-venn library
 
 import matplotlib_venn as plotvenn
-import plot as plot
+import plot_class.plot as plot
 
 class venn(plot.plot):
 

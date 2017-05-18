@@ -1,11 +1,12 @@
-import image as image
 import matplotlib.pyplot as plt
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+from plot_class import image
+
 
 class imageStack(image.image):
 
     def __init__(self,figure, data, position, title="",plotArgs=[],annotate=[]):
-        image.image.__init__(self,figure, data, position,title,plotArgs,annotate)
+        image.image.__init__(self, figure, data, position, title, plotArgs, annotate)
         self.frames = data
         self.currFrame = data[0]
         self.framesPerImage = 1

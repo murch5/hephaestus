@@ -1,4 +1,4 @@
-import animPlot as animPlot
+import plot_class.animPlot as animPlot
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

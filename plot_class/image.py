@@ -1,4 +1,4 @@
-import animPlot
+import plot_class.animPlot as animPlot
 import matplotlib.pyplot as plt
 import matplotlib.colors as col
 from mpl_toolkits.axes_grid1 import make_axes_locatable
