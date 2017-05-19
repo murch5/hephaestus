@@ -3,6 +3,8 @@ import seaborn as sb
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import glob as glob
+import os as os
 
 
 
@@ -29,13 +31,16 @@ class clusterMap(plot.plot):
             data = self.data.T
             pairwiseDist = sp_spatial_distance.pdist(data)
             self.clusterHierarchy = sp_cluster_hierarchy.linkage(pairwiseDist,method="complete")
-            self.clusterHierarchy.dump("process_data/hierarchy/cluster/"+ str(self.retrieveArgVal("SaveHierarchyClust")) + ".cluster")
+            clusterNameOutput = str(self.retrieveArgVal("SaveHierarchyClust")) + ".cluster"
+            clusterOutputPath = os.path.join("./process/hierarchy/cluster/",clusterNameOutput)
+            self.clusterHierarchy.dump(clusterOutputPath)
 
         if self.retrieveArgVal("GetHierarchyClust") is not None:
-            self.clusterHierarchy = np.load(
-                "process_data/hierarchy/cluster/" + str(self.retrieveArgVal("GetHierarchyClust")) + ".cluster")
+            clusterNameInput = str(self.retrieveArgVal("GetHierarchyClust")) + ".cluster"
+            clusterInputPath = os.path.join("./process/hierarchy/cluster/", clusterNameInput)
+            self.clusterHierarchy = np.load(clusterInputPath)
 
-        print(self.clusterHierarchy.shape)
+
 
         self.clusterMap = sb.clustermap(self.data,col_linkage=self.clusterHierarchy,vmin=self.vmin,vmax=self.vmax, figsize=(25,12))
 
@@ -47,7 +52,7 @@ class clusterMap(plot.plot):
         if self.retrieveArgVal("hideYlabel") is not None:
             self.clusterMap.ax_heatmap.yaxis.set_visible(False)
 
-        self.clusterMap.savefig(self.plotTitle + ".png")
+        self.clusterMap.savefig("./output/"+ self.plotTitle + ".png")
 
         return;
 
@@ -59,10 +64,11 @@ class clusterMap(plot.plot):
         self.vmin = 0
         self.vmax = 100
         self.clusterHierarchy = 0
+        os.makedirs("./process/hierarchy/cluster/",exist_ok=True)
+        self.outputHierarchy = glob.glob("./process/hierarchy/cluster/")
 
         self.data.set_index("GeneName",inplace=True)
 
-        print(self.data)
 
     def initAnimate(self, i):
         return;
