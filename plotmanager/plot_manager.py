@@ -1,27 +1,26 @@
 
-import matplotlib.pyplot as plt
-from plot_class.imageStack import imageStack
-from plot_class.violin import violin
-from plot_class.pie import pie
-from plot_class.scatter import scatter
-from plot_class.forest import forest
-from plot_class.contourMap import contourMap
-from plot_class.imageStack import imageStack
-from plot_class.zb_peristalsis import zbPeristalsis
-from plot_class.swarmInterval import swarmInterval
-from plot_class.survival import survival
-from plot_class.track import track
-from plot_class.DNAtrack import DNAtrack
-from plot_class.proteinTrack import proteinTrack
-from plot_class.image import image
-from plot_class.variantTrack import variantTrack
-from plot_class.clusterMap import clusterMap
-from plot_class.venn import venn
-
-import generateFrameSet as gf
 import matplotlib.animation as anim
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sb
+from plotmanager.plottype.DNAtrack import DNAtrack
+from plotmanager.plottype.clusterMap import clusterMap
+from plotmanager.plottype.contourMap import contourMap
+from plotmanager.plottype.forest import forest
+from plotmanager.plottype.imageStack import imageStack
+from plotmanager.plottype.pie import pie
+from plotmanager.plottype.proteinTrack import proteinTrack
+from plotmanager.plottype.scatter import scatter
+from plotmanager.plottype.survival import survival
+from plotmanager.plottype.swarmInterval import swarmInterval
+from plotmanager.plottype.track import track
+from plotmanager.plottype.variantTrack import variantTrack
+from plotmanager.plottype.venn import venn
+# from plottype.imageStack import imageStack
+from plotmanager.plottype.violin import violin
+from plotmanager.plottype.zb_peristalsis import zbPeristalsis
+
+from plotmanager.plottype.image import image
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 plt.rcParams['image.cmap'] = 'magma'
