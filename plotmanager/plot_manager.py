@@ -47,8 +47,6 @@ class plot_manager():
         self.saveAnimFlag = False
         self.figArgList = self.parseArgs(figureArgs)
 
-        print(self.figArgList)
-
         self.currentView = 0
 
        # self.cid = self.figure.canvas.mpl_connect('resize_event', self.onResize)
@@ -171,7 +169,6 @@ class plot_manager():
 
     def parseArgs(self, args):
 
-        print(args)
         argPD = pd.Series(args)
         argList = []
         if argPD.any():
