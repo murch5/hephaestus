@@ -20,7 +20,7 @@ class track(plot.plot):
         self.featureLabel = ""
         self.featureLabelList = []
 
-       # print(self.data.getData())
+
 
         return
 

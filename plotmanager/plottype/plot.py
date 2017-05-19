@@ -62,7 +62,6 @@ class plot():
 
     def assignData(self,data):
 
-        print(type(data))
         if isinstance(data,object):
             newdata = data
         else:

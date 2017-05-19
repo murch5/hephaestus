@@ -18,8 +18,6 @@ class contourMapAnim(contourMap.contourMap):
         self.currFrameIndex = 0
         self.currImageIndex = 0
 
-        print(self.fig)
-        print(self.subplot)
         return;
 
     def animateContour(self,i):

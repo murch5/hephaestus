@@ -40,9 +40,6 @@ class survival(animPlot.animPlot):
 
         kmf = lifelines.KaplanMeierFitter()
         naf = lifelines.NelsonAalenFitter()
-        print(self.data)
-
-        print(self.data.ix[:,0])
 
 
         if(self.data.shape[1] > 2):
@@ -50,7 +47,7 @@ class survival(animPlot.animPlot):
             cf = lifelines.CoxPHFitter()
             self.data.columns.values[0] = "T"
             self.data.columns.values[1] = "E"
-            print(self.data)
+
             cf.fit(self.data, "T", event_col="E")
             cf.print_summary()
 

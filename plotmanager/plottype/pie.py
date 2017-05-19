@@ -13,7 +13,7 @@ class pie(animPlot.animPlot):
         self.numNan = np.sum(self.NaNindices)
         self.dataCleaned = self.data[self.data.notnull()]
         self.labels = pd.DataFrame(self.dataCleaned.index.tolist())
-        print(self.labels)
+
         self.labels.columns = ["Labels"]
         self.pctFilter = 1
 
