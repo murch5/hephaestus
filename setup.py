@@ -1,9 +1,9 @@
 from distutils.core import setup
 
 setup(
-    name='plot',
+    name='plotmanager',
     version='0.1.0',
-    packages=[''],
+    packages=['plotmanager','plotmanager.plottype'],
     url='',
     license='None',
     author='Ryan',
