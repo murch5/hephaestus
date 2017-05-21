@@ -1,4 +1,3 @@
-
 import matplotlib.animation as anim
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -27,7 +26,8 @@ plt.rcParams['image.cmap'] = 'magma'
 
 chartTypes = {"violin": violin, "pie": pie, "scatter": scatter, "forest": forest, "contour": contourMap,
               "imageStack": imageStack, "zbperistalsis": zbPeristalsis, "image": image, "swarmInterval": swarmInterval,
-              "survival": survival, "track": track, "proteinTrack": proteinTrack, "DNAtrack": DNAtrack, "variantTrack": variantTrack, "clusterMap":clusterMap, "venn":venn}
+              "survival": survival, "track": track, "proteinTrack": proteinTrack, "DNAtrack": DNAtrack,
+              "variantTrack": variantTrack, "clusterMap": clusterMap, "venn": venn}
 funcTypes = {"sum": sum}
 
 
@@ -49,9 +49,9 @@ class plot_manager():
 
         self.currentView = 0
 
-       # self.cid = self.figure.canvas.mpl_connect('resize_event', self.onResize)
-        #if self.retrieveArgVal("hideTitle") is not None: self.figure.suptitle("")
-       # else:   self.figure.suptitle(self.name)
+        # self.cid = self.figure.canvas.mpl_connect('resize_event', self.onResize)
+        # if self.retrieveArgVal("hideTitle") is not None: self.figure.suptitle("")
+        # else:   self.figure.suptitle(self.name)
 
 
         self.setStyleSheet("seaborn-pastel")
@@ -60,13 +60,11 @@ class plot_manager():
 
         return
 
-    def onResize(self,event):
+    def onResize(self, event):
         print("Resizing...")
         self.drawPlots()
         self.figure.canvas.flush_events()
         return
-
-
 
     def parseViewSet(self, fileName):
 
@@ -82,7 +80,7 @@ class plot_manager():
 
         return
 
-    def addPlot(self,title, position, plotClass, data, plotArgs, annotate):
+    def addPlot(self, title, position, plotClass, data, plotArgs, annotate):
         newPlot = plotClass(self.figure, data, position, title, plotArgs, annotate)
         self.plotList.append(newPlot)
 
@@ -102,7 +100,7 @@ class plot_manager():
 
     def saveAnimationToFile(self):
 
-       # vidFileName = "View_" + self.
+        # vidFileName = "View_" + self.
         self.writer = anim.FFMpegWriter(fps=15, bitrate=5000)
         self.animHandler.save("t.mp4", writer=self.writer)
         return
@@ -134,7 +132,6 @@ class plot_manager():
         return
 
     def drawView(self):
-
 
         currView = self.viewList[self.currentView]
 
@@ -174,23 +171,23 @@ class plot_manager():
         if argPD.any():
             for i in argPD:
 
-                if i!=0:
+                if i != 0:
                     q = i.split("=", 1)
                     argList.append(q)
 
-        if(len(argList)>0):
+        if (len(argList) > 0):
 
-            if argList[0][0]!="0":
+            if argList[0][0] != "0":
                 argList = dict(argList)
                 self.argFlag = True
             else:
-                argList = {0:0}
+                argList = {0: 0}
         else:
             argList = {0: 0}
 
         return argList
 
-    def retrieveArgVal(self,argID):
+    def retrieveArgVal(self, argID):
 
         return self.figArgList.get(argID)
 
@@ -199,9 +196,4 @@ class plot_manager():
         if self.retrieveArgVal("hideTitle") is not None:
             self.figure.suptitle("")
 
-
         return
-
-
-# test1.addPlot(violin,((1,2,2,2,1,1,1),(2,2,3,2,4,6,2)),212)
-# test1.drawPlots()
