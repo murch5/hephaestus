@@ -5,7 +5,7 @@ import matplotlib.collections as collect
 from plotmanager.plottype import contourMapAnim
 
 
-class zbPeristalsis(contourMapAnim.contourMapAnim):
+class ZbPeristalsis(contourMapAnim.ContourMapAnim):
 
     def drawLines(self):
 
@@ -35,8 +35,8 @@ class zbPeristalsis(contourMapAnim.contourMapAnim):
 
         return;
 
-    def __init__(self, figure, data, position,title="",plotArgs=[],annotate=[]):
-        contourMapAnim.contourMapAnim.__init__(self,figure,data,position,title,plotArgs,annotate=[])
+    def __init__(self,figure, data, plot_XML):
+        contourMapAnim.ContourMapAnim.__init__(self,figure, data, plot_XML)
         #self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
         self.lineCoord = []
         self.lineCoordFormatted = []

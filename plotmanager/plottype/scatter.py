@@ -3,10 +3,10 @@ import seaborn as sb
 from plotmanager.plottype import animPlot
 
 
-class scatter(animPlot.animPlot):
+class Scatter(animPlot.AnimPlot):
 
-    def __init__(self,figure,data,position, title="",plotArgs=[],annotate=[]):
-        animPlot.animPlot.__init__(self,figure,data,position,title,plotArgs,annotate)
+    def __init__(self,figure, data, plot_XML):
+        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
 
 
     def draw(self):

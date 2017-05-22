@@ -5,9 +5,9 @@ import numpy as np
 from plotmanager.plottype import track
 
 
-class DNAtrack(track.track):
-    def __init__(self, figure, data, position, title="", plotArgs=[], annotate=[]):
-        track.track.__init__(self, figure, data, position, title, plotArgs, annotate)
+class DNAtrack(track.Track):
+    def __init__(self,figure, data, plot_XML):
+        track.Track.__init__(self,figure, data, plot_XML)
         self.features = self.data.getFeature("exon")
         self.chainLimits = self.data.getChain("region")
         self.featureLabel = "ID"

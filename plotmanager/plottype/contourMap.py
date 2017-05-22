@@ -4,7 +4,7 @@ import numpy as np
 from plotmanager.plottype import image
 
 
-class contourMap(image.image):
+class ContourMap(image.Image):
 
     def initContourMap(self):
 
@@ -18,8 +18,8 @@ class contourMap(image.image):
 
         return
 
-    def __init__(self, figure, data, position,title="",plotArgs=[],annotate=[]):
-        image.image.__init__(self, figure, data, position, title, plotArgs, annotate)
+    def __init__(self,figure, data, plot_XML):
+        image.Image.__init__(self,figure, data, plot_XML)
         self.surfaceData = data[0]
         self.currFrame = data[0]
         self.x = []

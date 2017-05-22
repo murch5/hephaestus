@@ -1,7 +1,7 @@
 from plotmanager.plottype import plot
 
 
-class animPlot(plot.plot):
+class AnimPlot(plot.Plot):
 
     def animate(self,i):
         return;
@@ -9,8 +9,8 @@ class animPlot(plot.plot):
     def draw(self):
         return;
 
-    def __init__(self,figure, data, position,title="",plotArgs=[],annotate=[]):
-        plot.plot.__init__(self,figure, data, position,title,plotArgs,annotate)
+    def __init__(self,figure, data, plot_XML):
+        plot.Plot.__init__(self,figure, data, plot_XML)
         self.frames = data
         self.position = position
         self.currFrame = data

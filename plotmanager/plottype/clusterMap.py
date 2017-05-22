@@ -15,7 +15,7 @@ import scipy.cluster.hierarchy as sp_cluster_hierarchy
 import sys
 sys.setrecursionlimit(40000)
 
-class clusterMap(plot.plot):
+class ClusterMap(plot.Plot):
 
     def animate(self,i):
         return;
@@ -56,8 +56,8 @@ class clusterMap(plot.plot):
 
         return;
 
-    def __init__(self,figure, data, position,title="",plotArgs=[],annotate=[]):
-        plot.plot.__init__(self,figure, data, position,title,plotArgs,annotate)
+    def __init__(self,figure, data, plot_XML):
+        plot.Plot.__init__(self,figure, data, plot_XML)
         self.position = position
         self.fig = figure
         self.clusterMap = 0

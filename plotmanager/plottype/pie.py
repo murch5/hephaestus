@@ -4,10 +4,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-class pie(animPlot.animPlot):
+class Pie(animPlot.AnimPlot):
 
     def __init__(self, figure, data, position, title="",plotArgs=[],annotate=[]):
-        animPlot.animPlot.__init__(self, figure, data, position,title, plotArgs,annotate)
+        animPlot.AnimPlot.__init__(self, figure, data, position,title, plotArgs,annotate)
         self.explode = self.retrieveArgVal("explode")
         self.NaNindices = self.data.isnull()
         self.numNan = np.sum(self.NaNindices)

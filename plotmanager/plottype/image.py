@@ -5,10 +5,10 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from plotmanager.plottype import animPlot
 
 
-class image(animPlot.animPlot):
+class Image(animPlot.AnimPlot):
 
-    def __init__(self,figure, data, position, title="",plotArgs=[],annotate=[]):
-        animPlot.animPlot.__init__(self,figure, data, position,title,plotArgs,annotate)
+    def __init__(self,figure, data, plot_XML):
+        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
         self.data = data
         self.colorBar = 0
         self.colorBarAx = 0

@@ -8,10 +8,10 @@ import matplotlib.collections as collect
 from plotmanager.plottype import plot
 
 
-class track(plot.plot):
+class Track(plot.Plot):
 
-    def __init__(self,figure, data, position,title="",plotArgs=[],annotate=[]):
-        plot.plot.__init__(self, figure, data, position, title, plotArgs, annotate)
+    def __init__(self,figure, data, plot_XML):
+        plot.Plot.__init__(self,figure, data, plot_XML)
         self.chainLimits = []
         self.features = []
         self.featurePatches = []

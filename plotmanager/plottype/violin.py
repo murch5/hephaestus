@@ -3,10 +3,10 @@ import seaborn as sb
 from plotmanager.plottype import animPlot
 
 
-class violin(animPlot.animPlot):
+class Violin(animPlot.AnimPlot):
 
-    def __init__(self, figure, data, position , title="",plotArgs=[],annotate=[]):
-        animPlot.animPlot.__init__(self, figure, data, position,title,plotArgs,annotate)
+    def __init__(self,figure, data, plot_XML):
+        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
         self.violinPlot = 0
         return
 

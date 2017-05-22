@@ -5,10 +5,10 @@ import numpy as np
 from plotmanager.plottype import track
 
 
-class variantTrack(track.track):
+class VariantTrack(track.Track):
 
-    def __init__(self,figure, data, position,title="",plotArgs=[],annotate=[]):
-        track.track.__init__(self, figure, data, position, title, plotArgs, annotate)
+    def __init__(self,figure, data, plot_XML):
+        track.Track.__init__(self,figure, data, plot_XML)
         self.variants = self.data.getFeature("variant")
 
         self.featureLabel = "Note"

@@ -5,10 +5,10 @@ import numpy as np
 from plotmanager.plottype import track
 
 
-class proteinTrack(track.track):
+class ProteinTrack(track.Track):
 
-    def __init__(self,figure, data, position,title="",plotArgs=[],annotate=[]):
-        track.track.__init__(self, figure, data, position, title, plotArgs, annotate)
+    def __init__(self,figure, data, plot_XML):
+        track.Track.__init__(self,figure, data, plot_XML)
         self.features = self.data.getFeature("Repeat")
         self.chainLimits = self.data.getChain("Chain")
         self.featureLabel = "Note"

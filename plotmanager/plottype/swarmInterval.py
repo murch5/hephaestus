@@ -7,10 +7,10 @@ import matplotlib.patches as patches
 
 
 
-class swarmInterval(animPlot.animPlot):
+class SwarmInterval(animPlot.AnimPlot):
 
-    def __init__(self,figure,data,position, title="",plotArgs=[],annotate=[]):
-        animPlot.animPlot.__init__(self,figure,data,position,title,plotArgs,annotate)
+    def __init__(self,figure, data, plot_XML):
+        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
         self.ID = self.data.ix[:,0]
         self.value = self.data.ix[:,1]
         self.interval = self.data.ix[:,2]

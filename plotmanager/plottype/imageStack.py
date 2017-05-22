@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 
 from plotmanager.plottype import image
+import xml.etree.ElementTree as et
 
+class ImageStack(image.Image):
 
-class imageStack(image.image):
-
-    def __init__(self,figure, data, position, title="",plotArgs=[],annotate=[]):
-        image.image.__init__(self, figure, data, position, title, plotArgs, annotate)
+    def __init__(self,figure, data, plot_XML):
+        image.Image.__init__(self,figure, data, plot_XML)
         self.frames = data
         self.currFrame = data[0]
         self.framesPerImage = 1
