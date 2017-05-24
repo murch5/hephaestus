@@ -9,7 +9,7 @@ class Pie(animPlot.AnimPlot):
     def __init__(self,figure, data, plot_XML):
         animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
         self.explode = None
-        self.labels = pd.DataFrame(self.data[0].get().index.tolist())
+        self.labels = pd.DataFrame(self.data.get().index.tolist())
         self.labels.columns = ["Labels"]
 
         self.pct_filter = 1
@@ -51,19 +51,19 @@ class Pie(animPlot.AnimPlot):
 
         if self.checkXML(".//plot_style//hide_labels_byvalue"):
             threshold = self.getXMLvalue(".//plot_style//hide_labels_byvalue")
-            hiddenVal = self.data[0].get().to_frame(name="val").query("val"+ threshold)
+            hiddenVal = self.data.get().to_frame(name="val").query("val"+ threshold)
             print(hiddenVal)
             labelsToKeep = hiddenVal.index.tolist()
             print(labelsToKeep)
             if labelsToKeep is not None:
                 self.labels.replace(labelsToKeep," ",inplace=True)
 
-        if len(self.data[0].get()) % 2 == 0:
+        if len(self.data.get()) % 2 == 0:
             colorWedge = ["#9F4298", "#D1AFD3"]
         else:
             colorWedge = ["#9F4298", "#D1AFD3","#E6E7E8"]
 
-        self.subplot.pie(self.data[0].get(),labels=self.labels.ix[:,0], startangle=90, explode=self.explode, autopct=make_autopct(self.data[0].get()),colors=colorWedge)
+        self.subplot.pie(self.data.get(),labels=self.labels.ix[:,0], startangle=90, explode=self.explode, autopct=make_autopct(self.data.get()),colors=colorWedge)
 
         self.subplot.axis("equal")
 
