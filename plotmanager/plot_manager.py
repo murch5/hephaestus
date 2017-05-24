@@ -35,10 +35,14 @@ chartTypes = {"violin": Violin, "pie": Pie, "scatter": Scatter, "forest": Forest
 class plot_manager():
     def __init__(self, name, viewset_style,view):
         self.name = name
-        self.figure = plt.figure(figsize=(11, 9))
 
         self.viewset_XML_style = viewset_style
         self.view_XML = view
+
+        if str(self.view_XML.findtext(".//plot_engine")) == "matplotlib":
+            self.figure = plt.figure(figsize=(11, 9))
+        else:
+            self.figure = None
 
         self.plot_list = []
         self.grid_spec = None
@@ -63,6 +67,7 @@ class plot_manager():
         return
 
     def add_plot(self,data,type,plot_XML):
+
         new_plot = chartTypes[type](self.figure,data,plot_XML)
         new_plot.set_gridspec(self.grid_spec)
         new_plot.setup_subplot()
@@ -82,7 +87,6 @@ class plot_manager():
 
     def show_plots(self):
         plt.show()
-
 
     def set_gridspec(self,gridspec):
         self.gridspec = gridspec
