@@ -21,7 +21,7 @@ from plotmanager.plottype.zb_peristalsis import ZbPeristalsis
 from plotmanager.plottype.image import Image
 
 import matplotlib.gridspec as gridspec
-import datatypes as dt
+import data_manager.datatypes as dt
 
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
