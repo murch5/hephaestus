@@ -1,6 +1,8 @@
 from plotmanager.plottype import plot
 import seaborn as sb
 import matplotlib.pyplot as plt
+import pandas as pd
+
 import numpy as np
 import glob as glob
 import os as os
@@ -42,13 +44,28 @@ class ClusterMap(plot.Plot):
         if self.checkXML(".//plot_style//z_score"):
             self.z_score = self.getXMLvalue(".//plot_style//z_score")
 
-        if self.checkXML(".//plot_style//fig_size"):
-            self.z_score = self.getXMLvalue(".//plot_style//fig_size")
+        if self.getXMLsubset(".//plot_style//groupby_color") is not None:
+            subset = self.getXMLsubset(".//plot_style//groupby_color")
+
+            for set in subset.findall(".//grouping"):
+                axis = self.getXMLvalue(".//axis",set)
+                groups_data_name = self.getXMLvalue(".//dataset_name",set)
+                groups_data_colors = self.getXMLvalue(".//colormap_name",set)
+                groups_names = self.data.map_transform(pd.Series(self.data.get_data_obj().get_index_labels(1)),self.data.get_byname(groups_data_name))
+                print(groups_names)
+                #groups_colors = self.data.map_transform(groups_names,self.data.get_byname(groups_data_colors))
+                transform_color = ["Classical","Non-classical"]
+                binary_pal = sb.light_palette('red', 2)
+                transform_color_dict = dict(zip(transform_color,binary_pal))
+                groups_colors = self.data.map_transform(groups_names, transform_color_dict)
+                self.col_color_groups = groups_colors
+                print(self.col_color_groups)
+                print(type(self.col_color_groups))
 
 
-        self.cluster_map = sb.clustermap(self.data[0].get(), col_linkage=self.clusterHierarchy, vmin=self.vmin,
-                                         vmax=self.vmax, standard_scale=self.standard_scale, z_score=self.z_score,
-                                         figsize=(25, 12))
+        self.cluster_map = sb.clustermap(self.data.get(), col_linkage=self.clusterHierarchy, vmin=self.vmin,
+                                         vmax=self.vmax, standard_scale=self.standard_scale, z_score=self.z_score,col_colors=self.col_color_groups,
+                                         row_colors = self.row_color_groups, figsize=(25, 12))
 
         plt.setp(self.cluster_map.ax_heatmap.get_yticklabels(), rotation=0)
         plt.setp(self.cluster_map.ax_heatmap.get_xticklabels(), rotation=90)
@@ -71,7 +88,10 @@ class ClusterMap(plot.Plot):
         os.makedirs("./process/hierarchy/cluster/", exist_ok=True)
         self.outputHierarchy = glob.glob("./process/hierarchy/cluster/")
 
-        self.data[0].get().set_index("GeneName", inplace=True)
+        self.col_color_groups = None
+        self.row_color_groups = None
+
+        self.data.get().set_index("GeneName", inplace=True)
 
     def initAnimate(self, i):
         return
