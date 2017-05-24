@@ -43,18 +43,18 @@ class ContourMap(image.Image):
         if self.addLinesFlag == True:
             self.lineDrawFunc()
 
-        if self.retrieveArgVal("colorBar") is not None:
-            self.clearColorBar()
-            self.addColorBar(self.contourPlot)
+        if self.checkXML(".//plot_style/colorbar"):
+            self.clear_color_bar()
+            self.add_color_bar(self.contourPlot)
 
-        self.colorBar.outline.set_linewidth(0.2)
-        for line in self.colorBar.lines:
+        self.color_bar.outline.set_linewidth(0.2)
+        for line in self.color_bar.lines:
             line.set_linewidth(5.0)
 
-        if len(self.xlim) > 0:
-            self.subplot.set_xlim(self.xlim)
-        if len(self.ylim) > 0:
-            self.subplot.set_ylim(self.ylim)
+        if self.checkXML(".//plot_style/xlim"):
+            self.subplot.set_xlim(self.getXMLvalue(".//plot_style/xlim"))
+        if self.checkXML(".//plot_style/ylim"):
+            self.subplot.set_ylim(self.getXMLvalue(".//plot_style/xlim"))
 
         self.subplot.invert_yaxis()
 

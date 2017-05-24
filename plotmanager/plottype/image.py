@@ -9,25 +9,24 @@ class Image(animPlot.AnimPlot):
 
     def __init__(self,figure, data, plot_XML):
         animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
-        self.data = data
-        self.colorBar = 0
-        self.colorBarAx = 0
-        self.luminMin = None
-        self.luminMax = None
-        self.normalize = self.normalizeLumin()
-
         self.image = 0
-        return;
+        self.color_bar = 0
+        self.color_bar_ax = 0
+        self.lumin_min = None
+        self.lumin_max = None
+        self.normalize = self.normalize_lumin()
 
-    def normalizeLumin(self):
+        self.color_map = "Greys"
 
-        if self.retrieveArgVal("luminMin") is not None:
-            self.luminMin = int(self.retrieveArgVal("luminMin"))
+        return
 
-        if self.retrieveArgVal("luminMax") is not None:
-            self.luminMax = int(self.retrieveArgVal("luminMax"))
+    def normalize_lumin(self):
 
-        normalize = col.Normalize(self.luminMin,self.luminMax)
+        if self.checkXML(".//plot_style/lumin"):
+            self.lumin_min = self.getXMLvalue(".//plot_style/lumin/min")
+            self.lumin_max = self.getXMLvalue(".//plot_style/lumin/max")
+
+        normalize = col.Normalize(self.lumin_min,self.lumin_max)
 
         return normalize
 
@@ -37,38 +36,39 @@ class Image(animPlot.AnimPlot):
 
         return;
 
-    def addColorBar(self,image):
+    def add_color_bar(self,image):
 
         divider = make_axes_locatable(self.subplot)
-        self.colorBarAx = divider.append_axes("right", size="3%", pad=0.05)
-        self.colorBar = plt.colorbar(image, cax=self.colorBarAx, cmap=plt.get_cmap(self.colorMap))
-        self.colorBarAx.yaxis.tick_right()
-        self.colorBarAx.xaxis.set_visible(False)
+        self.color_bar_ax = divider.append_axes("right", size="3%", pad=0.05)
+        self.color_bar = plt.colorbar(image, cax=self.color_bar_ax, cmap=plt.get_cmap(self.color_map))
+        self.color_bar_ax.yaxis.tick_right()
+        self.color_bar_ax.xaxis.set_visible(False)
 
         return
-    def clearColorBar(self):
-        if(self.colorBarAx!=0):
-            self.colorBarAx.remove()
+
+    def clear_color_bar(self):
+        if(self.color_bar_ax!=0):
+            self.color_bar_ax.remove()
 
         return
 
     def draw(self):
         self.subplot.clear()
 
-        self.image = self.subplot.imshow(self.data.T,cmap=plt.get_cmap(self.colorMap),norm=self.normalize)
+        self.image = self.subplot.imshow(self.data.get().T,cmap=plt.get_cmap(self.color_map),norm=self.normalize)
 
-        if len(self.xlim) > 0:
-            self.subplot.set_xlim(self.xlim)
-        if len(self.ylim) > 0:
-            self.subplot.set_ylim(self.ylim)
+        if self.checkXML(".//plot_style/xlim"):
+            self.subplot.sex_xlim=(self.getXMLvalue(".//plot_style/xlim"))
+        if self.checkXML(".//plot_style/ylim"):
+            self.subplot.sex_xlim = (self.getXMLvalue(".//plot_style/ylim"))
 
-        if self.retrieveArgVal("colorBar") is not None:
-            self.clearColorBar()
-            self.addColorBar(self.image)
+        if self.checkXML(".//plot_style/color_bar"):
+            self.clear_color_bar()
+            self.add_color_bar(self.image)
 
-        if self.insetLabel == True:
-            self.subplot.annotate(self.plotTitle, xy=(1, 0), xycoords='axes fraction',
-                                  xytext=(0.85, 0.1), textcoords='axes fraction', color="white", weight="semibold", size="medium")
+       # if self.insetLabel == True:
+           # self.subplot.annotate(self.plotTitle, xy=(1, 0), xycoords='axes fraction',
+             #                     xytext=(0.85, 0.1), textcoords='axes fraction', color="white", weight="semibold", size="medium")
 
         return
 

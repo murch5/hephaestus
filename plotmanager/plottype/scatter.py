@@ -11,7 +11,7 @@ class Scatter(animPlot.AnimPlot):
 
     def draw(self):
 
-        sb.regplot(x=self.data.ix[:,0],y=self.data.ix[:, 1],fit_reg=True,ax=self.subplot)
+        sb.regplot(x=self.data.get().ix[:,0],y=self.data.get().ix[:, 1],fit_reg=True,ax=self.subplot)
 
     def initAnimate(self):
         print(0)

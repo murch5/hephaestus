@@ -10,7 +10,6 @@ class ContourMapAnim(contourMap.ContourMap):
     def __init__(self,figure, data, plot_XML):
         contourMap.ContourMap.__init__(self,figure, data, plot_XML)
         self.frames = data
-        self.position = position
         self.currFrame = data[0]
         self.fig = figure
         self.animHandler = []
