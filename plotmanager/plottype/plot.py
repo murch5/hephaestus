@@ -83,11 +83,15 @@ class Plot():
 
         return value
 
-    def getXMLsubset(self,xml):
-         subset = self.plot_XML.find(xml)
-         if len(subset)<1:
-             subset = None
-         return subset
+    def getXMLsubset(self,xml,xml_set=None):
+
+        subset = None
+        if xml_set is not None:
+            subset = xml_set.find(xml)
+        else:
+            subset = self.plot_XML.find(xml)
+
+        return subset
 
 
 
