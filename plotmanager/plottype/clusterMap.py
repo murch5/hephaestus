@@ -44,28 +44,57 @@ class ClusterMap(plot.Plot):
         if self.checkXML(".//plot_style//z_score"):
             self.z_score = self.getXMLvalue(".//plot_style//z_score")
 
+        print("booya test")
         if self.getXMLsubset(".//plot_style//groupby_color") is not None:
+            print("booya e")
             subset = self.getXMLsubset(".//plot_style//groupby_color")
-
+            print("booya")
             for set in subset.findall(".//grouping"):
                 axis = self.getXMLvalue(".//axis",set)
-                groups_data_name = self.getXMLvalue(".//dataset_name",set)
-                groups_data_colors = self.getXMLvalue(".//colormap_name",set)
-                groups_names = self.data.map_transform(pd.Series(self.data.get_data_obj().get_index_labels(1)),self.data.get_byname(groups_data_name))
-                print(groups_names)
-                #groups_colors = self.data.map_transform(groups_names,self.data.get_byname(groups_data_colors))
-                transform_color = ["Classical","Non-classical"]
-                binary_pal = sb.light_palette('red', 2)
-                transform_color_dict = dict(zip(transform_color,binary_pal))
-                groups_colors = self.data.map_transform(groups_names, transform_color_dict)
-                self.col_color_groups = groups_colors
-                print(self.col_color_groups)
-                print(type(self.col_color_groups))
 
+                groups_color_mapping = self.getXMLvalue(".//colormap_name",set)
 
-        self.cluster_map = sb.clustermap(self.data.get(), col_linkage=self.clusterHierarchy, vmin=self.vmin,
+                mapping_subset = self.getXMLsubset(".//name_mapping",set)
+
+                name_transforms = mapping_subset.findall(".//mapping")
+
+                index_names = pd.Series(self.data.get_data_obj().get_index_labels(axis))
+
+                groups_name = index_names
+
+                for maps in name_transforms:
+
+                    dataset_map = self.getXMLvalue(".//name",maps)
+
+                    groups_name = self.data.map_transform(groups_name,self.data.get_byname(dataset_map))
+                    print(groups_name)
+
+                print(groups_name)
+
+                if self.getXMLvalue(".//color_map",set):
+                    group_color_palette = sb.color_palette(self.getXMLvalue(".//color_map",set),len(groups_name))
+                    group_color_pal_dict = dict(zip(groups_name,group_color_palette))
+
+                    ### Override nan to white
+                    group_color_pal_dict[np.nan] = (1.0,1.0,1.0)
+
+                    group_color = self.data.map_transform(groups_name, group_color_pal_dict)
+                else:
+                    group_color = self.data.map_transform(groups_name,self.data.get_byname(groups_color_mapping))
+
+                print(group_color)
+                groups_indexed = pd.concat([index_names,group_color],ignore_index=False, axis=1)
+                groups_indexed.columns  = ["Indices","Classification",]
+                groups_indexed.set_index("Indices",inplace=True)
+
+                if axis==1:
+                    self.col_color_groups = groups_indexed
+                elif axis==0:
+                    self.row_color_groups = groups_indexed
+
+        self.cluster_map = sb.clustermap(self.data.get(), col_linkage=self.clusterHierarchy, vmin=self.vmin, row_linkage=None,
                                          vmax=self.vmax, standard_scale=self.standard_scale, z_score=self.z_score,col_colors=self.col_color_groups,
-                                         row_colors = self.row_color_groups, figsize=(25, 12))
+                                         row_colors = self.row_color_groups, figsize=(15, 8))
 
         plt.setp(self.cluster_map.ax_heatmap.get_yticklabels(), rotation=0)
         plt.setp(self.cluster_map.ax_heatmap.get_xticklabels(), rotation=90)
