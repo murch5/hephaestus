@@ -44,11 +44,11 @@ class ClusterMap(plot.Plot):
         if self.checkXML(".//plot_style//z_score"):
             self.z_score = self.getXMLvalue(".//plot_style//z_score")
 
-        print("booya test")
+
         if self.getXMLsubset(".//plot_style//groupby_color") is not None:
-            print("booya e")
+
             subset = self.getXMLsubset(".//plot_style//groupby_color")
-            print("booya")
+
             for set in subset.findall(".//grouping"):
                 axis = self.getXMLvalue(".//axis",set)
 
@@ -67,9 +67,9 @@ class ClusterMap(plot.Plot):
                     dataset_map = self.getXMLvalue(".//name",maps)
 
                     groups_name = self.data.map_transform(groups_name,self.data.get_byname(dataset_map))
-                    print(groups_name)
 
-                print(groups_name)
+
+
 
                 if self.getXMLvalue(".//color_map",set):
                     group_color_palette = sb.color_palette(self.getXMLvalue(".//color_map",set),len(groups_name))
@@ -82,7 +82,7 @@ class ClusterMap(plot.Plot):
                 else:
                     group_color = self.data.map_transform(groups_name,self.data.get_byname(groups_color_mapping))
 
-                print(group_color)
+
                 groups_indexed = pd.concat([index_names,group_color],ignore_index=False, axis=1)
                 groups_indexed.columns  = ["Indices","Classification",]
                 groups_indexed.set_index("Indices",inplace=True)

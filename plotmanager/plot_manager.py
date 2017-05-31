@@ -1,3 +1,6 @@
+import logging
+logger = logging.getLogger(__name__)
+
 import matplotlib.animation as anim
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -34,14 +37,21 @@ chartTypes = {"violin": Violin, "pie": Pie, "scatter": Scatter, "forest": Forest
 
 class plot_manager():
     def __init__(self, name, viewset_style,view):
+
+        logger.debug("Initialize plot manager")
+
         self.name = name
+
+        logger.debug("--- Plot manager name: " + str(self.name))
 
         self.viewset_XML_style = viewset_style
         self.view_XML = view
 
         if str(self.view_XML.findtext(".//plot_engine")) == "matplotlib":
+            logger.debug("--- Plot manager name: matplotlib")
             self.figure = plt.figure(figsize=(11, 9))
         else:
+            logger.debug("--- Plot manager name: seaborn")
             self.figure = None
 
         self.plot_list = []
