@@ -1,0 +1,6 @@
+type: cluster_map
+set_parameters:
+  vmin: 0
+  vmax: 1
+  std_scale: 0
+  z-score: 0
