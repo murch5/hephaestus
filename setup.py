@@ -8,5 +8,6 @@ setup(
     license='None',
     author='Ryan',
     author_email='',
-    description='Plot Manager Wrapper for Matplotlib/seaborn'
+    description='Plot Manager Wrapper for Matplotlib/seaborn',
+    include_package_data=True
 )
