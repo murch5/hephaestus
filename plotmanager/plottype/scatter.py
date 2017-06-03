@@ -1,12 +1,12 @@
 import seaborn as sb
 
-from plotmanager.plottype import animPlot
+from plotmanager.plottype import anim_plot
 
 
-class Scatter(animPlot.AnimPlot):
+class Scatter(anim_plot.AnimPlot):
 
     def __init__(self,figure, data, plot_XML):
-        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
 
 
     def draw(self):

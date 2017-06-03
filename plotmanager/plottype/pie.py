@@ -1,13 +1,13 @@
-from plotmanager.plottype import animPlot
+from plotmanager.plottype import anim_plot
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-class Pie(animPlot.AnimPlot):
+class Pie(anim_plot.AnimPlot):
 
     def __init__(self,figure, data, plot_XML):
-        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
         self.explode = None
         self.labels = pd.DataFrame(self.data.get().index.tolist())
         self.labels.columns = ["Labels"]

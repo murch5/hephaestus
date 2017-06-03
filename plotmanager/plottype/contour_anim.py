@@ -2,13 +2,13 @@ import matplotlib.animation as anim
 import matplotlib.pyplot as plt
 import numpy as np
 
-from plotmanager.plottype import contourMap
+from plotmanager.plottype import contour
 
 
-class ContourMapAnim(contourMap.ContourMap):
+class ContourMapAnim(contour.ContourMap):
 
     def __init__(self,figure, data, plot_XML):
-        contourMap.ContourMap.__init__(self,figure, data, plot_XML)
+        contour.ContourMap.__init__(self, figure, data, plot_XML)
         self.frames = data
         self.currFrame = data[0]
         self.fig = figure
@@ -39,12 +39,12 @@ class ContourMapAnim(contourMap.ContourMap):
 
         self.surfaceData = self.currFrame
         self.subplot.clear()
-        contourMap.draw(self)
+        contour.draw(self)
         return self.subplot
 
     def animateInit(self):
         print("LOG:    Initialize animation")
-        contourMap.draw(self)
+        contour.draw(self)
         return self.subplot
 
     def startAnim(self):

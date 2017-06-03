@@ -5,21 +5,21 @@ import matplotlib.animation as anim
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sb
-from plotmanager.plottype.DNAtrack import DNAtrack
-from plotmanager.plottype.clusterMap import ClusterMap
-from plotmanager.plottype.contourMap import ContourMap
+from plotmanager.plottype.DNA_track import DNAtrack
+from plotmanager.plottype.cluster_map import ClusterMap
+from plotmanager.plottype.contour import ContourMap
 from plotmanager.plottype.forest import Forest
-from plotmanager.plottype.imageStack import ImageStack
+from plotmanager.plottype.image_stack import ImageStack
 from plotmanager.plottype.pie import Pie
-from plotmanager.plottype.proteinTrack import ProteinTrack
+from plotmanager.plottype.protein_track import ProteinTrack
 from plotmanager.plottype.scatter import Scatter
 from plotmanager.plottype.survival import Survival
-from plotmanager.plottype.swarmInterval import SwarmInterval
+from plotmanager.plottype.swarm_interval import SwarmInterval
 from plotmanager.plottype.track import Track
-from plotmanager.plottype.variantTrack import VariantTrack
+from plotmanager.plottype.variant_track import VariantTrack
 from plotmanager.plottype.venn import Venn
 from plotmanager.plottype.violin import Violin
-from plotmanager.plottype.zb_peristalsis import ZbPeristalsis
+from plotmanager.plottype.peristalsis import ZbPeristalsis
 
 from plotmanager.plottype.image import Image
 

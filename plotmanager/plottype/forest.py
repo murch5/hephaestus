@@ -1,13 +1,13 @@
-from plotmanager.plottype import animPlot
+from plotmanager.plottype import anim_plot
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
 #data format:  [Label,Odds Ratio,Lower Confidence Interval, Upper Confidence Interval]
-class Forest(animPlot.AnimPlot):
+class Forest(anim_plot.AnimPlot):
 
     def __init__(self,figure, data, plot_XML):
-        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
 
         #self.initializeForest()
 

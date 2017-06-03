@@ -1,12 +1,12 @@
 import seaborn as sb
 
-from plotmanager.plottype import animPlot
+from plotmanager.plottype import anim_plot
 
 
-class Violin(animPlot.AnimPlot):
+class Violin(anim_plot.AnimPlot):
 
     def __init__(self,figure, data, plot_XML):
-        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
         self.type = "violin"
         self.violinPlot = 0
         return

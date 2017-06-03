@@ -2,13 +2,13 @@ import matplotlib.colors as col
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-from plotmanager.plottype import animPlot
+from plotmanager.plottype import anim_plot
 
 
-class Image(animPlot.AnimPlot):
+class Image(anim_plot.AnimPlot):
 
     def __init__(self,figure, data, plot_XML):
-        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
         self.image = 0
         self.color_bar = 0
         self.color_bar_ax = 0

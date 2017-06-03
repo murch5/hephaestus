@@ -3,15 +3,15 @@ import numpy as np
 import pandas as pd
 import lifelines as lifelines
 
-from plotmanager.plottype import animPlot
+from plotmanager.plottype import anim_plot
 import matplotlib.colors as colors
 
 
-class Survival(animPlot.AnimPlot):
+class Survival(anim_plot.AnimPlot):
 
 
     def __init__(self,figure, data, plot_XML):
-        animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
         self.type = "KaplanMeier"
 
         self.survivalData = self.generateSurvivalData()
