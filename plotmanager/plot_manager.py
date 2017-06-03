@@ -79,6 +79,7 @@ class plot_manager():
     def add_plot(self,data,type,plot_XML):
 
         new_plot = chartTypes[type](self.figure,data,plot_XML)
+        new_plot.initialize()
         new_plot.set_gridspec(self.grid_spec)
         new_plot.setup_subplot()
 
