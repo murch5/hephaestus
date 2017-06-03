@@ -1,0 +1,7 @@
+type: pie
+set_parameters:
+  pct_filter: 0
+  show_pct: True
+toggle_parameters:
+init_func:
+
