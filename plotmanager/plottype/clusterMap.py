@@ -18,32 +18,25 @@ class ClusterMap(plot.Plot):
     def animate(self, i):
         return
 
-    def draw(self):
+    def hierarchical_clustering(self, settings):
 
-        if self.checkXML(".//plot_style//vmin"):
-            self.vmin = self.getXMLvalue(".//plot_style//vmin")
-        if self.checkXML(".//plot_style//vmax"):
-            self.vmax = self.getXMLvalue(".//plot_style//vmax")
-
-        if self.checkXML(".//plot_style//save_hierarchy_clust"):
+        if settings.get("source") == "save":
             data_transpose = self.data.get().T
             pairwise_dist = sp_spatial_distance.pdist(data_transpose)
             self.clusterHierarchy = sp_cluster_hierarchy.linkage(pairwise_dist, method="complete")
-            clusterNameOutput = str(self.plot_XML.find(".//plot_style//save_hierarchy_clust").text) + ".cluster"
+            clusterNameOutput = str(settings.get("name")) + ".cluster"
             clusterOutputPath = os.path.join("./process/hierarchy/cluster/", clusterNameOutput)
             self.clusterHierarchy.dump(clusterOutputPath)
 
-        if self.checkXML(".//plot_style//get_hierarchy_clust"):
-            clusterinput_name = str(self.plot_XML.find(".//plot_style//get_hierarchy_clust").text) + ".cluster"
+        elif settings.get("source") == "get":
+
+            clusterinput_name = str(str(settings.get("name"))) + ".cluster"
             clusterinput_path = os.path.join("./process/hierarchy/cluster/", clusterinput_name)
             self.clusterHierarchy = np.load(clusterinput_path)
 
-        if self.checkXML(".//plot_style//std_scale"):
-            self.standard_scale = self.getXMLvalue(".//plot_style//std_scale")
+        return
 
-        if self.checkXML(".//plot_style//z_score"):
-            self.z_score = self.getXMLvalue(".//plot_style//z_score")
-
+    def draw(self):
 
         if self.getXMLsubset(".//plot_style//groupby_color") is not None:
 
@@ -92,8 +85,8 @@ class ClusterMap(plot.Plot):
                 elif axis==0:
                     self.row_color_groups = groups_indexed
 
-        self.cluster_map = sb.clustermap(self.data.get(), col_linkage=self.clusterHierarchy, vmin=self.vmin, row_linkage=None,
-                                         vmax=self.vmax, standard_scale=self.standard_scale, z_score=self.z_score,col_colors=self.col_color_groups,
+        self.cluster_map = sb.clustermap(self.data.get(), col_linkage=None, vmin=self.get_set_param("vmin"), row_linkage=None,
+                                         vmax=self.get_set_param("vmax"), standard_scale=self.get_set_param("std_scale"), z_score=self.get_set_param("z_score"),col_colors=self.col_color_groups,
                                          row_colors = self.row_color_groups, figsize=(15, 8))
 
         plt.setp(self.cluster_map.ax_heatmap.get_yticklabels(), rotation=0)
@@ -106,21 +99,24 @@ class ClusterMap(plot.Plot):
 
         return
 
+
+
     def __init__(self, figure, data, plot_XML):
         plot.Plot.__init__(self, figure, data, plot_XML)
         self.cluster_map = 0
-        self.vmin = 0
-        self.vmax = 100
         self.clusterHierarchy = None
-        self.standard_scale = None
-        self.z_score = None
+
         os.makedirs("./process/hierarchy/cluster/", exist_ok=True)
         self.outputHierarchy = glob.glob("./process/hierarchy/cluster/")
 
         self.col_color_groups = None
         self.row_color_groups = None
 
+        self.type = "cluster_map"
+
         self.data.get().set_index("GeneName", inplace=True)
 
-    def initAnimate(self, i):
+        self.init_func_dict = {"hierarchy": self.hierarchical_clustering}
+
         return
+
