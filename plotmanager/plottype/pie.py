@@ -13,14 +13,10 @@ class Pie(animPlot.AnimPlot):
         self.labels.columns = ["Labels"]
 
         self.pct_filter = 1
-
+        self.type = "pie"
         self.colors = ["#6a6dc5","#76b74b","#a656c4","#68803b","#c666a8","#4eb596","#ca5938","#689bd6","#c49643","#ca586f"]
 
         return
-
-    def animate(self,i):
-        return
-
 
     def draw(self):
 
@@ -37,8 +33,8 @@ class Pie(animPlot.AnimPlot):
 
                 val=int((pct*total/100.0)+0.5)
 
-                if self.checkXML(".//plot_style//show_pct"):
-                    wedgeLabel = '{p:.2f}%  ({v:d})'.format(p=pct, v=val) if pct > self.pct_filter else ''
+                if self.get_set_param("show_pct")==True:
+                    wedgeLabel = '{p:.2f}%  ({v:d})'.format(p=pct, v=val) if pct > self.get_set_param("pct_filter") else ''
                 else:
                     wedgeLabel = '({v:d})'.format(v=val) if pct > self.pct_filter else ''
 
@@ -46,8 +42,6 @@ class Pie(animPlot.AnimPlot):
 
             return my_autopct
 
-        if self.checkXML(".//plot_style//pct_filter"):
-            self.pct_filter = self.getXMLvalue(".//plot_style//pct_filter")
 
         if self.checkXML(".//plot_style//hide_labels_byvalue"):
             threshold = self.getXMLvalue(".//plot_style//hide_labels_byvalue")
@@ -67,8 +61,5 @@ class Pie(animPlot.AnimPlot):
 
         self.subplot.axis("equal")
 
-        return
-
-    def initAnimate(self, i):
         return
 

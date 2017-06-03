@@ -7,6 +7,7 @@ class Violin(animPlot.AnimPlot):
 
     def __init__(self,figure, data, plot_XML):
         animPlot.AnimPlot.__init__(self,figure, data, plot_XML)
+        self.type = "violin"
         self.violinPlot = 0
         return
 

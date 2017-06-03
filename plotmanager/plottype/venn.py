@@ -27,7 +27,9 @@ class Venn(plot.Plot):
     def __init__(self,figure, data, plot_XML):
         plot.Plot.__init__(self,figure, data, plot_XML)
         self.fig = figure
+        self.type = "venn"
         self.groups = len(self.data.get().columns)
+
         self.venn = 0
 
     def initAnimate(self, i):
