@@ -1,6 +1,10 @@
 import matplotlib.gridspec as gridspec
 import numpy as np
 import pandas as pd
+import yaml as yaml
+import io as io
+
+import os as os
 
 import logging
 logger = logging.getLogger(__name__)
@@ -13,6 +17,15 @@ class Plot():
         self.figure = figure
         self.data = data
 
+        self.type = None
+        self.type_settings = None
+
+        self.plot_settings = {}
+        self.toggle_settings = {}
+        self.init_func = {}
+
+        self.param_list = []
+
         self.gridspec = None
         self.subplot = None
 
@@ -23,17 +36,13 @@ class Plot():
     def set_gridspec(self,gridspec):
         self.gridspec = gridspec
 
-    def animate(self,i):
-
-        return
-
-    def initAnimate(self, i):
+    def render(self):
         return
 
     def draw(self):
-        return
 
-    def init(self):
+        self.render()
+
         return
 
     def setup_subplot(self):
@@ -95,6 +104,56 @@ class Plot():
             subset = self.plot_XML.find(xml)
 
         return subset
+
+    def initialize(self):
+
+        logger.info("--- Initializing plot...")
+
+        self.parse_xml()
+        self.load_plot_settings()
+        self.set_parameters()
+        self.toggle_parameters()
+        self.initialize_func()
+
+        return
+
+    def parse_xml(self):
+        return
+
+    def set_parameters(self):
+        return
+
+    def toggle_parameters(self):
+        return
+
+    def initialize_func(self):
+
+        return
+
+    def get_set_param(self,name):
+        return self.plot_settings.get(name)
+
+    def load_plot_settings(self):
+
+        with io.open(os.path.split(__file__)[0] + "/" + self.type + ".yml","r") as plot_config:
+            try:
+                self.type_settings = yaml.safe_load(plot_config)
+            except:
+                logger.error("Plot type config " + self.type + ".yml failed to load")
+
+        print(self.type_settings)
+
+        self.plot_settings = self.type_settings.get("set_parameters")
+        logger.debug("--- Plot settable parameters: " + str(self.plot_settings))
+
+        self.toggle_settings = self.type_settings.get("toggle_parameters")
+        logger.debug("--- Plot toggle parameters: " + str(self.toggle_settings))
+
+        self.init_func = self.type_settings.get("init_func")
+        logger.debug("--- Plot initialization functions: " + str(self.init_func))
+
+        return
+
 
 
 
