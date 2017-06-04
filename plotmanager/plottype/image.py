@@ -7,8 +7,8 @@ from plotmanager.plottype import anim_plot
 
 class Image(anim_plot.AnimPlot):
 
-    def __init__(self,figure, data, plot_XML):
-        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_settings)
         self.image = 0
         self.color_bar = 0
         self.color_bar_ax = 0

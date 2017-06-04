@@ -10,8 +10,8 @@ import matplotlib.colors as colors
 class Survival(anim_plot.AnimPlot):
 
 
-    def __init__(self,figure, data, plot_XML):
-        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_settings)
         self.type = "KaplanMeier"
 
         self.survivalData = self.generateSurvivalData()

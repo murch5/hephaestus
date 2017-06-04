@@ -7,8 +7,8 @@ from plotmanager.plottype import track
 
 class VariantTrack(track.Track):
 
-    def __init__(self,figure, data, plot_XML):
-        track.Track.__init__(self,figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        track.Track.__init__(self,figure, data, plot_settings)
         self.variants = self.data.getFeature("variant")
 
         self.featureLabel = "Note"

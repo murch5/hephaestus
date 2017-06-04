@@ -18,8 +18,8 @@ class ContourMap(image.Image):
 
         return
 
-    def __init__(self,figure, data, plot_XML):
-        image.Image.__init__(self,figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        image.Image.__init__(self,figure, data, plot_settings)
         self.surfaceData = data[0]
         self.currFrame = data[0]
         self.x = []

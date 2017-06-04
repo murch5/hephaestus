@@ -5,8 +5,8 @@ import xml.etree.ElementTree as et
 
 class ImageStack(image.Image):
 
-    def __init__(self,figure, data, plot_XML):
-        image.Image.__init__(self,figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        image.Image.__init__(self,figure, data, plot_settings)
         self.frames = data
         self.currFrame = data[0]
         self.framesPerImage = 1

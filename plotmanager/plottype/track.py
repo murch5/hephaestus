@@ -10,8 +10,8 @@ from plotmanager.plottype import plot
 
 class Track(plot.Plot):
 
-    def __init__(self,figure, data, plot_XML):
-        plot.Plot.__init__(self,figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        plot.Plot.__init__(self,figure, data, plot_settings)
         self.chainLimits = []
         self.features = []
         self.featurePatches = []

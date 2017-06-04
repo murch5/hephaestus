@@ -35,8 +35,8 @@ class ZbPeristalsis(contour_anim.ContourMapAnim):
 
         return;
 
-    def __init__(self,figure, data, plot_XML):
-        contour_anim.ContourMapAnim.__init__(self, figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        contour_anim.ContourMapAnim.__init__(self, figure, data, plot_settings)
         #self.contourAnimationHandler = cm.contourMapAnim(gf.generateFrameSet("*.tif"))
         self.lineCoord = []
         self.lineCoordFormatted = []

@@ -101,8 +101,8 @@ class ClusterMap(plot.Plot):
 
 
 
-    def __init__(self, figure, data, plot_XML):
-        plot.Plot.__init__(self, figure, data, plot_XML)
+    def __init__(self, figure, data, plot_settings):
+        plot.Plot.__init__(self, figure, data, plot_settings)
         self.cluster_map = 0
         self.clusterHierarchy = None
 

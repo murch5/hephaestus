@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 
 class Pie(anim_plot.AnimPlot):
 
-    def __init__(self,figure, data, plot_XML):
-        anim_plot.AnimPlot.__init__(self, figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        anim_plot.AnimPlot.__init__(self, figure, data, plot_settings)
         self.explode = None
         self.labels = pd.DataFrame(self.data.get().index.tolist())
         self.labels.columns = ["Labels"]

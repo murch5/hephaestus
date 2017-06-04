@@ -6,8 +6,8 @@ from plotmanager.plottype import track
 
 
 class DNAtrack(track.Track):
-    def __init__(self,figure, data, plot_XML):
-        track.Track.__init__(self,figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        track.Track.__init__(self,figure, data, plot_settings)
         self.features = self.data.getFeature("exon")
         self.chainLimits = self.data.getChain("region")
         self.featureLabel = "ID"

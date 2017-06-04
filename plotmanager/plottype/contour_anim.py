@@ -7,8 +7,8 @@ from plotmanager.plottype import contour
 
 class ContourMapAnim(contour.ContourMap):
 
-    def __init__(self,figure, data, plot_XML):
-        contour.ContourMap.__init__(self, figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        contour.ContourMap.__init__(self, figure, data, plot_settings)
         self.frames = data
         self.currFrame = data[0]
         self.fig = figure

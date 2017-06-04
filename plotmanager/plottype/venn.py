@@ -24,8 +24,8 @@ class Venn(plot.Plot):
 
         return;
 
-    def __init__(self,figure, data, plot_XML):
-        plot.Plot.__init__(self,figure, data, plot_XML)
+    def __init__(self,figure, data, plot_settings):
+        plot.Plot.__init__(self,figure, data, plot_settings)
         self.fig = figure
         self.type = "venn"
         self.groups = len(self.data.get().columns)
