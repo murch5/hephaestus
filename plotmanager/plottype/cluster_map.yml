@@ -5,8 +5,7 @@ set_parameters:
   std_scale: null
   z_score: null
 toggle_parameters:
+  show_title: True
 init_func:
-  hierarchy:
-    source: save
-    name:
+  hierarchy: None
 
