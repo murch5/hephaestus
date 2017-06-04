@@ -25,19 +25,22 @@ class Plot():
         self.type = None
         self.type_settings = None
 
-        self.plot_settings = {}
+        self.set_params = {}
         self.toggle_settings = {}
-        self.init_func = {}
+        self.init_func_settings = {}
+
+        self.init_func_list = {}
+        self.toggle_func_list = {}
 
         self.param_list = []
 
         self.gridspec = None
         self.subplot = None
 
-        self.plot_XML = plot_XML
+        self.plot_settings = plot_settings.get("subplot")
+        self.plot_style = self.plot_settings.get("plot_style")
 
-        self.temp = xml_parser.xml_to_dict(self.plot_XML)
-        print(self.temp)
+        logger.debug("--- Plot settings: " + str(self.plot_settings))
 
         return
 
@@ -53,12 +56,16 @@ class Plot():
 
         return
 
+    def compile_init_func_list(self):
+
+        return
+
     def setup_subplot(self):
 
-        row = int(self.plot_XML.findtext(".//pos/row"))
-        col = int(self.plot_XML.findtext(".//pos/col"))
-        row_width = int(self.plot_XML.findtext(".//rowsize"))
-        col_width = int(self.plot_XML.findtext(".//colsize"))
+        row = int(self.plot_settings.get("pos").get("row"))
+        col = int(self.plot_settings.get("pos").get("col"))
+        row_width = int(self.plot_settings.get("rowsize"))
+        col_width = int(self.plot_settings.get("colsize"))
 
         subplotspec = self.gridspec.new_subplotspec([row,col], row_width, col_width)
 
@@ -67,57 +74,10 @@ class Plot():
 
         return
 
-    def checkXML(self,xml):
-        check = False
-        if self.plot_XML.find(xml) is not None:
-            check = True
-        else:
-            check = False
-
-        return check
-
-    def getXMLvalue(self,xml,xml_subset=None):
-
-        if xml_subset is not None:
-            data = xml_subset.find(xml)
-        else:
-            data = self.plot_XML.find(xml)
-
-        if data is not None:
-            data_type = data.attrib["data_type"]
-            value = None
-            if data_type in ["int","i"]:
-                value = int(data.text)
-            elif data_type in ["float","f"]:
-                value = float(data.text)
-            elif data_type in ["bool","b"]:
-                value = bool(data.text)
-            elif data_type in ["str","s"]:
-                value = str(data.text)
-            elif data_type in ["tuple_int", "ti"]:
-                value = tuple(data.text.split(","))
-            else:
-                value = str(data.text)
-        else:
-            value = None
-
-        return value
-
-    def getXMLsubset(self,xml,xml_set=None):
-
-        subset = None
-        if xml_set is not None:
-            subset = xml_set.find(xml)
-        else:
-            subset = self.plot_XML.find(xml)
-
-        return subset
-
     def initialize(self):
 
         logger.info("--- Initializing plot...")
 
-        self.parse_xml()
         self.load_plot_settings()
         self.set_parameters()
         self.toggle_parameters()
@@ -125,10 +85,15 @@ class Plot():
 
         return
 
-    def parse_xml(self):
-        return
-
     def set_parameters(self):
+
+        for param in self.plot_style:
+            if param in self.set_params:
+                self.set_params[param] = self.plot_style.get(param)
+            if param in self.toggle_settings:
+                self.toggle_settings[param] = self.plot_style.get(param)
+            if param in self.init_func:
+                self.init_func[param] = self.plot_style.get(param)
         return
 
     def toggle_parameters(self):
@@ -136,10 +101,14 @@ class Plot():
 
     def initialize_func(self):
 
+        for func in self.init_func.keys():
+            if self.init_func[func]:
+                self.get_init_func_list().get(func)(self.init_func[func])
+
         return
 
     def get_set_param(self,name):
-        return self.plot_settings.get(name)
+        return self.set_params.get(name)
 
     def load_plot_settings(self):
 
@@ -149,7 +118,7 @@ class Plot():
             except:
                 logger.error("Plot type config " + self.type + ".yml failed to load")
 
-        self.plot_settings = self.type_settings.get("set_parameters")
+        self.set_params = self.type_settings.get("set_parameters")
         logger.debug("--- Plot settable parameters: " + str(self.plot_settings))
 
         self.toggle_settings = self.type_settings.get("toggle_parameters")
@@ -160,6 +129,7 @@ class Plot():
 
         return
 
-
+    def get_init_func_list(self):
+        return self.init_func_list
 
 
