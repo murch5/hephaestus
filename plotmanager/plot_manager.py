@@ -50,9 +50,11 @@ class plot_manager():
         if str(self.view_XML.findtext(".//plot_engine")) == "matplotlib":
             logger.debug("--- Plot manager name: matplotlib")
             self.figure = plt.figure(figsize=(11, 9))
+            self.figure.canvas.set_window_title(self.name)
         else:
             logger.debug("--- Plot manager name: seaborn")
             self.figure = None
+
 
         self.plot_list = []
         self.grid_spec = None
@@ -101,5 +103,49 @@ class plot_manager():
 
     def set_gridspec(self,gridspec):
         self.gridspec = gridspec
+
+    def getXMLvalue(self,xml,xml_subset=None):
+
+        if xml_subset is not None:
+            data = xml_subset.find(xml)
+        else:
+            data = self.plot_XML.find(xml)
+
+        if data is not None:
+            data_type = data.attrib["data_type"]
+            value = None
+            if data_type in ["int","i"]:
+                value = int(data.text)
+            elif data_type in ["float","f"]:
+                value = float(data.text)
+            elif data_type in ["bool","b"]:
+                value = bool(data.text)
+            elif data_type in ["str","s"]:
+                value = str(data.text)
+            elif data_type in ["tuple_int", "ti"]:
+                value = tuple(data.text.split(","))
+            else:
+                value = str(data.text)
+        else:
+            value = None
+
+        return value
+
+    def getXMLsubset(self,xml,xml_set=None):
+
+        subset = None
+        if xml_set is not None:
+            subset = xml_set.find(xml)
+        else:
+            subset = self.plot_XML.find(xml)
+
+        return subset
+
+    def parseXMLtoDict(self, view):
+
+
+
+        return
+
 
 
