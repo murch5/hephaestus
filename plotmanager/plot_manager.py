@@ -44,10 +44,12 @@ class plot_manager():
 
         logger.debug("--- Plot manager name: " + str(self.name))
 
-        self.viewset_XML_style = viewset_style
-        self.view_XML = view
+        self.viewset_style = viewset_style
+        self.view_settings = view.get("view")
 
-        if str(self.view_XML.findtext(".//plot_engine")) == "matplotlib":
+        print(self.view_settings)
+
+        if self.view_settings.get("plot_engine") == "matplotlib":
             logger.debug("--- Plot manager name: matplotlib")
             self.figure = plt.figure(figsize=(11, 9))
             self.figure.canvas.set_window_title(self.name)
@@ -66,8 +68,8 @@ class plot_manager():
 
     def setup_figure(self):
 
-        row = self.view_XML.find(".//plotsize/row").text
-        col = self.view_XML.find(".//plotsize/col").text
+        row = self.view_settings.get("plotsize").get("row")
+        col = self.view_settings.get("plotsize").get("col")
 
         self.grid_spec = gridspec.GridSpec(int(row), int(col))
 
@@ -78,9 +80,9 @@ class plot_manager():
         self.figure.canvas.flush_events()
         return
 
-    def add_plot(self,data,type,plot_XML):
+    def add_plot(self,data,type,plot_settings):
 
-        new_plot = chartTypes[type](self.figure,data,plot_XML)
+        new_plot = chartTypes[type](self.figure,data,plot_settings)
         new_plot.initialize()
         new_plot.set_gridspec(self.grid_spec)
         new_plot.setup_subplot()
@@ -103,49 +105,6 @@ class plot_manager():
 
     def set_gridspec(self,gridspec):
         self.gridspec = gridspec
-
-    def getXMLvalue(self,xml,xml_subset=None):
-
-        if xml_subset is not None:
-            data = xml_subset.find(xml)
-        else:
-            data = self.plot_XML.find(xml)
-
-        if data is not None:
-            data_type = data.attrib["data_type"]
-            value = None
-            if data_type in ["int","i"]:
-                value = int(data.text)
-            elif data_type in ["float","f"]:
-                value = float(data.text)
-            elif data_type in ["bool","b"]:
-                value = bool(data.text)
-            elif data_type in ["str","s"]:
-                value = str(data.text)
-            elif data_type in ["tuple_int", "ti"]:
-                value = tuple(data.text.split(","))
-            else:
-                value = str(data.text)
-        else:
-            value = None
-
-        return value
-
-    def getXMLsubset(self,xml,xml_set=None):
-
-        subset = None
-        if xml_set is not None:
-            subset = xml_set.find(xml)
-        else:
-            subset = self.plot_XML.find(xml)
-
-        return subset
-
-    def parseXMLtoDict(self, view):
-
-
-
-        return
 
 
 
