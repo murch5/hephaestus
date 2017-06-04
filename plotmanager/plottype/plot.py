@@ -4,16 +4,21 @@ import pandas as pd
 import yaml as yaml
 import io as io
 
+import io_util.xml_parse as xml_parser
+
+
+
 import os as os
 
 import logging
 logger = logging.getLogger(__name__)
 
+
 from plotmanager import annotation
 
 class Plot():
 
-    def __init__(self,figure, data, plot_XML):
+    def __init__(self,figure, data, plot_settings):
         self.figure = figure
         self.data = data
 
@@ -30,6 +35,9 @@ class Plot():
         self.subplot = None
 
         self.plot_XML = plot_XML
+
+        self.temp = xml_parser.xml_to_dict(self.plot_XML)
+        print(self.temp)
 
         return
 
@@ -140,8 +148,6 @@ class Plot():
                 self.type_settings = yaml.safe_load(plot_config)
             except:
                 logger.error("Plot type config " + self.type + ".yml failed to load")
-
-        print(self.type_settings)
 
         self.plot_settings = self.type_settings.get("set_parameters")
         logger.debug("--- Plot settable parameters: " + str(self.plot_settings))
