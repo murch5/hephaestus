@@ -30,7 +30,7 @@ class Plot():
         self.init_func_settings = {}
 
         self.init_func_list = {}
-        self.toggle_func_list = {}
+        self.toggle_func_list = {"axes":self.set_axes}
 
         self.param_list = []
 
@@ -97,6 +97,12 @@ class Plot():
         return
 
     def toggle_parameters(self):
+
+
+        for toggle in self.toggle_settings.keys():
+            if self.toggle_settings[toggle]:
+                self.get_toggle_func_list().get(toggle)(self.toggle_settings[toggle])
+
         return
 
     def initialize_func(self):
@@ -132,4 +138,39 @@ class Plot():
     def get_init_func_list(self):
         return self.init_func_list
 
+    def get_toggle_func_list(self):
+        return self.toggle_func_list
+
+    ##Toggle Functions Declarations
+
+    def set_axes(self,settings):
+
+        if settings.get("grid"):
+            axis = None
+            show = True
+
+            x_grid = settings.get("grid").get("x")
+            y_grid = settings.get("grid").get("y")
+
+            if x_grid == True:
+                axis = "x"
+            if y_grid == True:
+                axis = "y"
+            if x_grid == True and y_grid == True:
+                axis = "both"
+
+            if axis is None:
+                show = False
+                axis = "both"
+
+            self.subplot.axes.grid(b=show,axis=axis)
+
+
+        pass
+
+    def title(self,settings):
+        pass
+
+    def axes_labels(self,settings):
+        pass
 
