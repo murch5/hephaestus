@@ -1,6 +1,7 @@
 import logging
 logger = logging.getLogger(__name__)
 
+
 import matplotlib.animation as anim
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -23,6 +24,7 @@ from plotmanager.plottype.peristalsis import ZbPeristalsis
 
 from plotmanager.plottype.image import Image
 
+
 import matplotlib.gridspec as gridspec
 import data_manager.datatypes as dt
 
@@ -40,14 +42,13 @@ class plot_manager():
 
         logger.debug("Initialize plot manager")
 
+
         self.name = name
 
         logger.debug("--- Plot manager name: " + str(self.name))
 
         self.viewset_style = viewset_style
         self.view_settings = view.get("view")
-
-        print(self.view_settings)
 
         if self.view_settings.get("plot_engine") == "matplotlib":
             logger.debug("--- Plot manager name: matplotlib")
@@ -83,9 +84,9 @@ class plot_manager():
     def add_plot(self,data,type,plot_settings):
 
         new_plot = chartTypes[type](self.figure,data,plot_settings)
-        new_plot.initialize()
         new_plot.set_gridspec(self.grid_spec)
         new_plot.setup_subplot()
+        new_plot.initialize()
 
         self.plot_list.append(new_plot)
 
