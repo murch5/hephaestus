@@ -9,32 +9,23 @@ class Image(anim_plot.AnimPlot):
 
     def __init__(self,figure, data, plot_settings):
         anim_plot.AnimPlot.__init__(self, figure, data, plot_settings)
-        self.image = 0
-        self.color_bar = 0
-        self.color_bar_ax = 0
-        self.lumin_min = None
-        self.lumin_max = None
-        self.normalize = self.normalize_lumin()
 
-        self.color_map = "Greys"
+        self.type = "image"
+
+        self.image = None
+        self.color_bar = None
+        self.color_bar_ax = None
+
+        self.normalize = None
+
+        self.init_func_list = {"normalize_luminance": self.normalize_luminance}
 
         return
 
-    def normalize_lumin(self):
+    def normalize_luminance(self,settings):
 
-        if self.checkXML(".//plot_style/lumin"):
-            self.lumin_min = self.getXMLvalue(".//plot_style/lumin/min")
-            self.lumin_max = self.getXMLvalue(".//plot_style/lumin/max")
+        return
 
-        normalize = col.Normalize(self.lumin_min,self.lumin_max)
-
-        return normalize
-
-    def animate(self, i):
-
-        self.draw()
-
-        return;
 
     def add_color_bar(self,image):
 
@@ -55,20 +46,21 @@ class Image(anim_plot.AnimPlot):
     def draw(self):
         self.subplot.clear()
 
-        self.image = self.subplot.imshow(self.data.get().T,cmap=plt.get_cmap(self.color_map),norm=self.normalize)
+        if self.get_set_param("hide_grid"):
+            print("booya")
 
-        if self.checkXML(".//plot_style/xlim"):
-            self.subplot.sex_xlim=(self.getXMLvalue(".//plot_style/xlim"))
-        if self.checkXML(".//plot_style/ylim"):
-            self.subplot.sex_xlim = (self.getXMLvalue(".//plot_style/ylim"))
+            self.subplot.grid(None, which="both")
 
-        if self.checkXML(".//plot_style/color_bar"):
-            self.clear_color_bar()
-            self.add_color_bar(self.image)
+        self.image = self.subplot.imshow(self.data.get(),cmap=plt.get_cmap(self.get_set_param("color_map")),norm=self.normalize)
 
-       # if self.insetLabel == True:
-           # self.subplot.annotate(self.plotTitle, xy=(1, 0), xycoords='axes fraction',
-             #                     xytext=(0.85, 0.1), textcoords='axes fraction', color="white", weight="semibold", size="medium")
+       # if self.checkXML(".//plot_style/xlim"):
+       #     self.subplot.sex_xlim=(self.getXMLvalue(".//plot_style/xlim"))
+       # if self.checkXML(".//plot_style/ylim"):
+       #     self.subplot.sex_xlim = (self.getXMLvalue(".//plot_style/ylim"))
+
+      #  if self.checkXML(".//plot_style/color_bar"):
+          #  self.clear_color_bar()
+           # self.add_color_bar(self.image)
 
         return
 
