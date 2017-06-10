@@ -1,11 +1,11 @@
 import logging
 logger = logging.getLogger(__name__)
 
-
 import matplotlib.animation as anim
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sb
+
 from plotmanager.plottype.DNA_track import DNAtrack
 from plotmanager.plottype.cluster_map import ClusterMap
 from plotmanager.plottype.contour import ContourMap
@@ -21,13 +21,10 @@ from plotmanager.plottype.variant_track import VariantTrack
 from plotmanager.plottype.venn import Venn
 from plotmanager.plottype.violin import Violin
 from plotmanager.plottype.peristalsis import ZbPeristalsis
-
 from plotmanager.plottype.image import Image
-
 
 import matplotlib.gridspec as gridspec
 import data_manager.datatypes as dt
-
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 plt.rcParams['image.cmap'] = 'magma'
@@ -37,7 +34,7 @@ chartTypes = {"violin": Violin, "pie": Pie, "scatter": Scatter, "forest": Forest
               "survival": Survival, "track": Track, "proteinTrack": ProteinTrack, "DNAtrack": DNAtrack,
               "variantTrack": VariantTrack, "clusterMap": ClusterMap, "venn": Venn}
 
-class plot_manager():
+class PlotManager(  ):
     def __init__(self, name, viewset_style,view):
 
         logger.debug("Initialize plot manager")
