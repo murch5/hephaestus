@@ -1,10 +1,8 @@
-import matplotlib.gridspec as gridspec
-import numpy as np
-import pandas as pd
+
 import yaml as yaml
 import io as io
 
-import io_util.xml_parse as xml_parser
+import factory_manager as fm
 
 
 
@@ -16,33 +14,12 @@ logger = logging.getLogger(__name__)
 
 from plotmanager import annotation
 
-class Plot():
+class Plot(fm.FactoryObject):
 
-    def __init__(self,figure, data, plot_settings):
-        self.figure = figure
-        self.data = data
 
-        self.type = None
-        self.type_settings = None
+    def initialize(self):
 
-        self.set_params = {}
-        self.toggle_settings = {}
-        self.init_func_settings = {}
-
-        self.init_func_list = {}
-        self.toggle_func_list = {"axes":self.set_axes}
-
-        self.param_list = []
-
-        self.gridspec = None
-        self.subplot = None
-
-        self.plot_settings = plot_settings.get("subplot")
-        self.plot_style = self.plot_settings.get("plot_style")
-
-        logger.debug("--- Plot settings: " + str(self.plot_settings))
-
-        return
+        pass
 
     def set_gridspec(self,gridspec):
         self.gridspec = gridspec
@@ -55,6 +32,11 @@ class Plot():
         self.render()
 
         return
+
+    def do(self, data):
+        self.draw()
+        pass
+
 
     def compile_init_func_list(self):
 
@@ -74,16 +56,18 @@ class Plot():
 
         return
 
-    def initialize(self):
+    def initialize_inner(self):
 
         logger.info("--- Initializing plot...")
 
         self.load_plot_settings()
         self.set_parameters()
-        self.toggle_parameters()
+        #self.toggle_parameters()
         self.initialize_func()
 
         return
+
+
 
     def set_parameters(self):
 

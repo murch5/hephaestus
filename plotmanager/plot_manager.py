@@ -1,10 +1,9 @@
 import logging
 logger = logging.getLogger(__name__)
 
-import matplotlib.animation as anim
 import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sb
+
+import factory_manager as fm
 
 from plotmanager.plottype.DNA_track import DNAtrack
 from plotmanager.plottype.cluster_map import ClusterMap
@@ -34,40 +33,20 @@ chartTypes = {"violin": Violin, "pie": Pie, "scatter": Scatter, "forest": Forest
               "survival": Survival, "track": Track, "proteinTrack": ProteinTrack, "DNAtrack": DNAtrack,
               "variantTrack": VariantTrack, "clusterMap": ClusterMap, "venn": Venn}
 
-class PlotManager(  ):
-    def __init__(self, name, viewset_style,view):
+class PlotManager(fm.FactoryStack):
 
-        logger.debug("Initialize plot manager")
+    def setup_figure(self):
 
-
-        self.name = name
-
-        logger.debug("--- Plot manager name: " + str(self.name))
-
-        self.viewset_style = viewset_style
-        self.view_settings = view.get("view")
-
-        if self.view_settings.get("plot_engine") == "matplotlib":
+        if self.engine == "matplotlib":
             logger.debug("--- Plot manager name: matplotlib")
             self.figure = plt.figure(figsize=(11, 9))
-            self.figure.canvas.set_window_title(self.name)
+            #self.figure.canvas.set_window_title(self.name)
         else:
             logger.debug("--- Plot manager name: seaborn")
             self.figure = None
 
-
-        self.plot_list = []
-        self.grid_spec = None
-
-        self.setup_figure()
-
-
-        return
-
-    def setup_figure(self):
-
-        row = self.view_settings.get("plotsize").get("row")
-        col = self.view_settings.get("plotsize").get("col")
+        row = self.plotsize.get("row")
+        col = self.plotsize.get("col")
 
         self.grid_spec = gridspec.GridSpec(int(row), int(col))
 
@@ -103,6 +82,10 @@ class PlotManager(  ):
 
     def set_gridspec(self,gridspec):
         self.gridspec = gridspec
+
+    def initialize(self):
+        pass
+
 
 
 
