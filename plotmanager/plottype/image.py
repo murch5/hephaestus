@@ -7,21 +7,6 @@ from plotmanager.plottype import anim_plot
 
 class Image(anim_plot.AnimPlot):
 
-    def __init__(self,figure, data, plot_settings):
-        anim_plot.AnimPlot.__init__(self, figure, data, plot_settings)
-
-        self.type = "image"
-
-        self.image = None
-        self.color_bar = None
-        self.color_bar_ax = None
-
-        self.normalize = None
-
-        self.init_func_list = {"normalize_luminance": self.normalize_luminance}
-
-        return
-
     def normalize_luminance(self,settings):
 
         return
@@ -46,12 +31,11 @@ class Image(anim_plot.AnimPlot):
     def draw(self):
         self.subplot.clear()
 
-        if self.get_set_param("hide_grid"):
+        if self.get("hide_grid"):
             print("booya")
-
             self.subplot.grid(None, which="both")
 
-        self.image = self.subplot.imshow(self.data.get(),cmap=plt.get_cmap(self.get_set_param("color_map")),norm=self.normalize)
+        self.image = self.subplot.imshow(self.data[0],cmap=plt.get_cmap(self.color_map),norm=self.normalize)
 
        # if self.checkXML(".//plot_style/xlim"):
        #     self.subplot.sex_xlim=(self.getXMLvalue(".//plot_style/xlim"))
