@@ -7,11 +7,6 @@ from plotmanager.plottype import anim_plot
 
 class Image(anim_plot.AnimPlot):
 
-    def normalize_luminance(self,settings):
-
-        return
-
-
     def add_color_bar(self,image):
 
         divider = make_axes_locatable(self.subplot)
@@ -35,18 +30,8 @@ class Image(anim_plot.AnimPlot):
             print("booya")
             self.subplot.grid(None, which="both")
 
+        print(self.data[0])
         self.image = self.subplot.imshow(self.data[0],cmap=plt.get_cmap(self.color_map),norm=self.normalize)
-
-       # if self.checkXML(".//plot_style/xlim"):
-       #     self.subplot.sex_xlim=(self.getXMLvalue(".//plot_style/xlim"))
-       # if self.checkXML(".//plot_style/ylim"):
-       #     self.subplot.sex_xlim = (self.getXMLvalue(".//plot_style/ylim"))
-
-      #  if self.checkXML(".//plot_style/color_bar"):
-          #  self.clear_color_bar()
-           # self.add_color_bar(self.image)
 
         return
 
-    def getImage(self):
-        return self.image

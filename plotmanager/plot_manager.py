@@ -4,9 +4,8 @@ logger = logging.getLogger(__name__)
 import matplotlib.pyplot as plt
 
 import factory_manager as fm
-
 import matplotlib.gridspec as gridspec
-import data_manager.datatypes as dt
+
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
 plt.rcParams['image.cmap'] = 'magma'
@@ -30,12 +29,11 @@ class PlotManager(fm.FactoryStack):
         self.grid_spec = gridspec.GridSpec(int(row), int(col))
 
 
-    def onResize(self, event):
+    def on_resize(self, event):
         print("Resizing...")
         self.draw_plots()
         self.figure.canvas.flush_events()
         return
-
 
     def initialize(self):
         pass
