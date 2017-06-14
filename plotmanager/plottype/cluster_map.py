@@ -19,10 +19,11 @@ import sys
 sys.setrecursionlimit(40000)
 
 class ClusterMap(plot.Plot):
-    def animate(self, i):
-        return
 
     def hierarchical_clustering(self, settings):
+
+        os.makedirs("./process/hierarchy/cluster/", exist_ok=True)
+        self.output_hierarchy = glob.glob("./process/hierarchy/cluster/")
 
         logger.debug("------ Hierarchical clustering enabled")
 
@@ -94,8 +95,10 @@ class ClusterMap(plot.Plot):
 
     def draw(self):
 
-        self.cluster_map = sb.clustermap(self.data.get(), col_linkage=self.clusterHierarchy, vmin=self.get_set_param("vmin"), row_linkage=None,
-                                         vmax=self.get_set_param("vmax"), standard_scale=self.get_set_param("std_scale"), z_score=self.get_set_param("z_score"),col_colors=self.col_color_groups,
+        self.data[0].set_index("GeneName", inplace=True)
+
+        self.cluster_map = sb.clustermap(self.data[0], col_linkage=self.cluster_hierarchy, vmin=self.vmin, row_linkage=None,
+                                         vmax=self.vmax, standard_scale=self.std_scale, z_score=self.z_score,col_colors=self.col_color_groups,
                                          row_colors = self.row_color_groups, figsize=(15, 8))
 
         plt.setp(self.cluster_map.ax_heatmap.get_yticklabels(), rotation=0)
@@ -109,23 +112,6 @@ class ClusterMap(plot.Plot):
         return
 
 
+        #
 
-    def __init__(self, figure, data, plot_settings):
-        plot.Plot.__init__(self, figure, data, plot_settings)
-        self.cluster_map = 0
-        self.clusterHierarchy = None
-
-        os.makedirs("./process/hierarchy/cluster/", exist_ok=True)
-        self.outputHierarchy = glob.glob("./process/hierarchy/cluster/")
-
-        self.col_color_groups = None
-        self.row_color_groups = None
-
-        self.type = "cluster_map"
-
-        self.data.get().set_index("GeneName", inplace=True)
-
-        self.init_func_list = {"hierarchy": self.hierarchical_clustering}
-
-        return
 
