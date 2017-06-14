@@ -1,0 +1,10 @@
+type: cluster_map
+vmin: 0
+vmax: 1
+std_scale: null
+z_score: null
+show_title: True
+hierarchy: None
+col_color_groups: null
+row_color_groups: null
+cluster_hierarchy: null
