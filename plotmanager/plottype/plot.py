@@ -11,35 +11,13 @@ import os as os
 import logging
 logger = logging.getLogger(__name__)
 
-
-from plotmanager import annotation
-
 class Plot(fm.FactoryObject):
-
 
     def initialize(self):
         self.load_plot_settings()
         pass
 
-    def set_gridspec(self,gridspec):
-        self.gridspec = gridspec
-
-    def render(self):
-        return
-
     def draw(self):
-
-        self.render()
-
-        return
-
-    def do(self, data):
-        self.draw()
-        pass
-
-
-    def compile_init_func_list(self):
-
         return
 
     def setup_subplot(self):
@@ -62,14 +40,15 @@ class Plot(fm.FactoryObject):
 
     def load_plot_settings(self):
 
+        print(self.plot_type)
         with io.open(os.path.split(__file__)[0] + "/" + self.plot_type + ".yml","r") as plot_config:
             try:
                 self.type_settings = yaml.safe_load(plot_config)
             except:
                 logger.error("Plot type config " + self.plot_type + ".yml failed to load")
 
+        print(self.type_settings)
+        logger.debug(self.type_settings)
         self.update_attr(self.type_settings,overlap="drop")
 
         return
-
-
