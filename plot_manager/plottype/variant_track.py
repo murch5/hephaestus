@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 #import hgvs.parser as hgvsparser
-from plotmanager.plottype import track
+from plot_manager.plottype import track
 
 
 class VariantTrack(track.Track):

@@ -1,4 +1,4 @@
-from plotmanager.plottype import anim_plot
+from plot_manager.plottype import anim_plot
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

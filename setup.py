@@ -1,5 +1,5 @@
 from distutils.core import setup
-from plotmanager.__init__ import __version__ as version
+from plot_manager.__init__ import __version__ as version
 
 setup(
     name='plotmanager',

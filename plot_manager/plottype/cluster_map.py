@@ -1,4 +1,4 @@
-from plotmanager.plottype import plot
+from plot_manager.plottype import plot
 import seaborn as sb
 import matplotlib.pyplot as plt
 import pandas as pd

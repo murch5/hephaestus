@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-from plotmanager.plottype import track
+from plot_manager.plottype import track
 
 
 class ProteinTrack(track.Track):
