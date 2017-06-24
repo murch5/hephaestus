@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import lifelines as lifelines
 
-from plot_manager.plottype import anim_plot
+from plot_manager.type import anim_plot
 import matplotlib.colors as colors
 
 

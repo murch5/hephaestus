@@ -1,4 +1,4 @@
-from plot_manager.plottype import plot
+from plot_manager.type import plot
 
 
 class AnimPlot(plot.Plot):

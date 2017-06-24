@@ -2,7 +2,7 @@ import matplotlib.colors as col
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-from plot_manager.plottype import anim_plot
+from plot_manager.type import anim_plot
 
 
 class Image(anim_plot.AnimPlot):

@@ -2,7 +2,7 @@
 import numpy as np
 from matplotlib import lines as ln
 import matplotlib.collections as collect
-from plot_manager.plottype import contour_anim
+from plot_manager.type import contour_anim
 
 
 class ZbPeristalsis(contour_anim.ContourMapAnim):

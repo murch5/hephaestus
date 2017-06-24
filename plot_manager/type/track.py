@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.patches as patches
 import matplotlib.collections as collect
 
-from plot_manager.plottype import plot
+from plot_manager.type import plot
 
 
 class Track(plot.Plot):

@@ -2,7 +2,7 @@ import matplotlib.animation as anim
 import matplotlib.pyplot as plt
 import numpy as np
 
-from plot_manager.plottype import contour
+from plot_manager.type import contour
 
 
 class ContourMapAnim(contour.ContourMap):

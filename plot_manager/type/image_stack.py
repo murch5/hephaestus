@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from plot_manager.plottype import image
+from plot_manager.type import image
 import xml.etree.ElementTree as et
 
 class ImageStack(image.Image):
