@@ -27,10 +27,10 @@ class Image(anim_plot.AnimPlot):
         self.subplot.clear()
 
         if self.get("hide_grid"):
-            print("booya")
+
             self.subplot.grid(None, which="both")
 
-        print(self.data[0])
+
         self.image = self.subplot.imshow(self.data[0],cmap=plt.get_cmap(self.color_map),norm=self.normalize)
 
         return

@@ -96,7 +96,6 @@ class ClusterMap(plot.Plot):
     def draw(self):
 
         self.data[0].set_index("GeneName", inplace=True)
-
         self.cluster_map = sb.clustermap(self.data[0], col_linkage=self.cluster_hierarchy, vmin=self.vmin, row_linkage=None,
                                          vmax=self.vmax, standard_scale=self.std_scale, z_score=self.z_score,col_colors=self.col_color_groups,
                                          row_colors = self.row_color_groups, figsize=(15, 8))

@@ -31,11 +31,6 @@ class Survival(anim_plot.AnimPlot):
 
         return
 
-    def initAnimate(self):
-        print(0)
-    def animate(self):
-        print(0)
-
     def generateSurvivalData(self):
 
         kmf = lifelines.KaplanMeierFitter()

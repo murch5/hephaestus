@@ -9,6 +9,5 @@ class AnimPlot(plot.Plot):
     def draw(self):
         return;
 
-
     def initAnimate(self, i):
         return;

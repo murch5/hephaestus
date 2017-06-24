@@ -21,8 +21,7 @@ class VariantTrack(track.Track):
         self.subplot.title.set_text("")
         self.subplot.axis("off")
 
-
-        return;
+        return
 
     def parseHGVS(self):
         return

@@ -40,14 +40,12 @@ class Plot(fm.FactoryObject):
 
     def load_plot_settings(self):
 
-        print(self.plot_type)
         with io.open(os.path.split(__file__)[0] + "/" + self.plot_type + ".yml","r") as plot_config:
             try:
                 self.type_settings = yaml.safe_load(plot_config)
             except:
                 logger.error("Plot type config " + self.plot_type + ".yml failed to load")
 
-        print(self.type_settings)
         logger.debug(self.type_settings)
         self.update_attr(self.type_settings,overlap="drop")
 
