@@ -1,7 +1,5 @@
 from plotmanager.plottype import anim_plot
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 import matplotlib.collections as collect
 import matplotlib.patches as patches
 
@@ -9,18 +7,15 @@ import matplotlib.patches as patches
 
 class SwarmInterval(anim_plot.AnimPlot):
 
-    def __init__(self,figure, data, plot_settings):
-        anim_plot.AnimPlot.__init__(self, figure, data, plot_settings)
-        self.ID = self.data.ix[:,0]
-        self.value = self.data.ix[:,1]
-        self.interval = self.data.ix[:,2]
+    def draw(self):
+
+        self.ID = self.data[0].ix[:, 0]
+        self.value = self.data[0].ix[:, 1]
+        self.interval = self.data[0].ix[:, 2]
         self.intervalPatches = []
         self.midPtLines = []
         self.patchCollection = []
         self.midPtLineCollection = []
-
-    def draw(self):
-
 
         X = np.arange(0,((len(self.value))*2)+1)
 
@@ -29,7 +24,6 @@ class SwarmInterval(anim_plot.AnimPlot):
         for i, x in enumerate(self.interval):
 
             if isinstance(x,str):
-
 
                 if x[0] != ">" and x[0] != "<":
                     limits = x.split("-")
@@ -55,10 +49,4 @@ class SwarmInterval(anim_plot.AnimPlot):
         self.subplot.semilogy()
 
 
-        return
-
-
-    def initAnimate(self):
-        return
-    def animate(self):
         return
