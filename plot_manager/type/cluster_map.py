@@ -103,10 +103,8 @@ class ClusterMap(plot.Plot):
         plt.setp(self.cluster_map.ax_heatmap.get_yticklabels(), rotation=0)
         plt.setp(self.cluster_map.ax_heatmap.get_xticklabels(), rotation=90)
 
-        #if self.checkXML(".//plot_style//hide_xlabel"):
-       #     self.cluster_map.ax_heatmap.xaxis.set_visible(False)
-       # if self.checkXML(".//plot_style//hide_ylabel"):
-        #    self.cluster_map.ax_heatmap.yaxis.set_visible(False)
+        self.figure = self.cluster_map.fig
+
 
         return
 
