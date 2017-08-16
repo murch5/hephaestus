@@ -20,6 +20,14 @@ class Plot(fm.FactoryObject):
     def draw(self):
         return
 
+    def annotate(self):
+
+        logging.debug("--- Adding annotations")
+
+        self.annotation_manager.call_all("draw")
+
+        pass
+
     def setup_subplot(self):
 
         row = int(self.row)
@@ -31,6 +39,8 @@ class Plot(fm.FactoryObject):
 
         if self.figure is not None:
             self.subplot = self.figure.add_subplot(subplotspec)
+
+        #self.annotation
 
         return
 
@@ -50,3 +60,6 @@ class Plot(fm.FactoryObject):
         self.update_attr(self.type_settings,overlap="drop")
 
         return
+
+    def initialize_annotation(self):
+        self.annotation_manager.push_all("ax",self.subplot)
