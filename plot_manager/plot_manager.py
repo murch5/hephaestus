@@ -39,5 +39,3 @@ class PlotManager(fm.FactoryStack):
         pass
 
 
-
-
