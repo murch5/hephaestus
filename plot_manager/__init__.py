@@ -18,4 +18,7 @@ from plot_manager.type.peristalsis import ZbPeristalsis
 from plot_manager.type.image import Image
 from plot_manager.type.line import Line
 
+from plot_manager.anno.text import Text
+
 from plot_manager.plot_manager import PlotManager
+from plot_manager.annotation_manager import AnnotationManager
