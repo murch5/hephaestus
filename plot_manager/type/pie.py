@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 
 
 class Pie(anim_plot.AnimPlot):
-
     def draw(self):
 
         print(self.colors)
@@ -19,14 +18,14 @@ class Pie(anim_plot.AnimPlot):
             def my_autopct(pct):
 
                 total = values.sum()
-                if(isinstance(total,pd.Series)):
+                if (isinstance(total, pd.Series)):
                     total = total.values
                     total = total[0]
                     pct = pct[0]
                 else:
                     total = total
 
-                val=int((pct*total/100.0)+0.5)
+                val = int((pct * total / 100.0) + 0.5)
 
                 if self.show_pct:
                     wedgeLabel = '{p:.2f}%  ({v:d})'.format(p=pct, v=val) if pct > self.pct_filter else ''
@@ -37,25 +36,36 @@ class Pie(anim_plot.AnimPlot):
 
             return my_autopct
 
-
         if self.get("hide_label_by_value"):
 
             threshold = self.get("hide_label_by_value")
-            hiddenVal = self.data[0].to_frame(name="val").query("val"+ threshold)
+            hiddenVal = self.data[0].to_frame(name="val").query("val" + threshold)
             print(hiddenVal)
             labelsToKeep = hiddenVal.index.tolist()
             print(labelsToKeep)
             if labelsToKeep is not None:
-                self.labels.replace(labelsToKeep," ",inplace=True)
+                self.labels.replace(labelsToKeep, " ", inplace=True)
+
+                # seaborn_muted = ["#4878CF", "#6ACC65", "#D65F5F",
+                # "#B47CC7", "#C4AD66", "#77BEDB"],
 
         if len(self.data[0]) % 2 == 0:
-            color_wedge = ["#9F4298", "#D1AFD3"]
+            color_wedge = ["#2D75A2", "#E0812B"]
         else:
-            color_wedge = ["#9F4298", "#D1AFD3","#E6E7E8"]
+            color_wedge = ["#2D75A2", "#E0812B", "#3A923A"]
 
-        self.subplot.pie(self.data[0],labels=self.labels.ix[:,0], startangle=90, explode=self.explode, autopct=make_autopct(self.data[0]),colors=color_wedge)
+        patches, text, autotext = self.subplot.pie(self.data[0], labels=self.labels.ix[:, 0], startangle=90,
+                                                   explode=self.explode, autopct=make_autopct(self.data[0]),
+                                                   colors=color_wedge, wedgeprops={"linewidth":1, "ec":"black"})
+
+        for label in autotext:
+            label.set(fontsize=13)
+            label.set_bbox({"facecolor":"white","alpha":0.75})
+
+
+        for label in text:
+            label.set(fontsize=16)
 
         self.subplot.axis("equal")
 
         return
-
