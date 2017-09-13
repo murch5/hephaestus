@@ -1,12 +1,8 @@
 type: forest
-set_parameters:
-  vmin: 0
-  vmax: 1
-  std_scale: null
-  z_score: null
-toggle_parameters:
-init_func:
-  hierarchy:
+vmin: 0
+vmax: 1
+show_p_value: null
+hierarchy:
     source: save
     name:
 
