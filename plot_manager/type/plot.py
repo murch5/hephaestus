@@ -39,6 +39,8 @@ class Plot(fm.FactoryObject):
 
         if self.figure is not None:
             self.subplot = self.figure.add_subplot(subplotspec)
+        else:
+            self.subplot = None
 
         #self.annotation
 
