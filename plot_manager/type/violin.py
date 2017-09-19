@@ -30,7 +30,7 @@ class Violin(anim_plot.AnimPlot):
 
         for i,tick in enumerate(self.subplot.xaxis.get_majorticklocs()):
             if tick < 0:
-                print(tick,i)
+
                 ticks_x[i].set_visible(False)
 
 

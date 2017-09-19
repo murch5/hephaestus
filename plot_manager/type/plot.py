@@ -42,7 +42,7 @@ class Plot(fm.FactoryObject):
         else:
             self.subplot = None
 
-        #self.annotation
+
 
         return
 
