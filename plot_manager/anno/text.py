@@ -4,10 +4,9 @@ class Text(annotation.Annotation):
 
     def draw(self):
 
-        print("booya")
-        print(self.s)
-        self.ax.text(self.x,self.y,self.s, fontsize=12, transform=self.ax.transAxes)
+        c = self.get("color")
+        if c is None:
+            c = "w"
+        self.ax.text(self.x,self.y,self.s, fontsize=12, transform=self.ax.transAxes,color=c)
 
         pass
-
-
