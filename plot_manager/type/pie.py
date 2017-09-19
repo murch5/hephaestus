@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 class Pie(anim_plot.AnimPlot):
     def draw(self):
 
-        print(self.colors)
+
         self.explode = None
 
         self.labels = pd.DataFrame(self.data[0].index.tolist())
-        print(self.labels)
+
         self.labels.columns = ["Labels"]
 
         def make_autopct(values):
