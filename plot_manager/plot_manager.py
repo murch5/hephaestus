@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, "C:/Users/Ryan/PycharmProjects/datatypesPY")
 import logging
 logger = logging.getLogger(__name__)
 
@@ -36,6 +38,8 @@ class PlotManager(fm.FactoryStack):
         return
 
     def initialize(self):
+
+
         pass
 
 
