@@ -1,4 +1,3 @@
-
 import yaml as yaml
 import io as io
 import io_util.xml_parse as xml_parser
@@ -34,8 +33,6 @@ class Plot(fm.FactoryObject):
 
     def build(self):
 
-
-
         self.update_attr(self.plot_style)
 
         annotate_XML = self.xml.find("annotate")
@@ -68,7 +65,6 @@ class Plot(fm.FactoryObject):
         return
 
     def set_data(self, data_dict):
-
 
         data_list = []
         for dataset in self.xml.iterfind(".//data/dataset/name"):
