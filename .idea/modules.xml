@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/contourPY.iml" filepath="$PROJECT_DIR$/.idea/contourPY.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/plot_managerPY.iml" filepath="$PROJECT_DIR$/.idea/plot_managerPY.iml" />
     </modules>
   </component>
 </project>

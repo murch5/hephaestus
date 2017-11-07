@@ -1,0 +1,12 @@
+type: image
+size: 0
+color_map: Greys
+lumin_min: null
+lumin_max: null
+x_lim: null
+y_lim: null
+hide_grid: True
+axes: null
+title: null
+init_func:
+normalize: null

@@ -1,0 +1,5 @@
+type: pie
+pct_filter: 0
+show_pct: True
+hide_label_by_value: null
+colors: ["#6a6dc5", "#76b74b", "#a656c4", "#68803b", "#c666a8", "#4eb596", "#ca5938", "#689bd6","#c49643", "#ca586f"]
