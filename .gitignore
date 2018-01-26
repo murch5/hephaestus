@@ -88,3 +88,6 @@ log.txt
 
 *.mp4
 .idea/
+
+**/.idea/workspace.xml
+**/.idea/tasks.xml
