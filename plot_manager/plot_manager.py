@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, "C:/Users/Ryan/PycharmProjects/datatypesPY")
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -10,7 +10,7 @@ import matplotlib.gridspec as gridspec
 
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
-plt.rcParams['image.cmap'] = 'magma'
+plt.rcParams['image.cmap'] = 'magma
 
 
 class PlotManager(fm.FactoryStack):
@@ -38,8 +38,6 @@ class PlotManager(fm.FactoryStack):
         return
 
     def initialize(self):
-
-
         pass
 
 
