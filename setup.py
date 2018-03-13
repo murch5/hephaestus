@@ -2,7 +2,7 @@ from distutils.core import setup
 from plot_manager.__init__ import __version__ as version
 
 setup(
-    name='plotmanager',
+    name='Hephaestus',
     version=version,
     packages=['plotmanager','plotmanager.plottype'],
     url='',

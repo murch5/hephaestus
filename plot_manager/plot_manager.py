@@ -10,7 +10,7 @@ import matplotlib.gridspec as gridspec
 
 
 plt.rcParams['animation.ffmpeg_path'] = '/ffmpeg/bin/ffmpeg'
-plt.rcParams['image.cmap'] = 'magma
+plt.rcParams['image.cmap'] = 'magma'
 
 
 class PlotManager(fm.FactoryStack):
@@ -39,5 +39,4 @@ class PlotManager(fm.FactoryStack):
 
     def initialize(self):
         pass
-
 
