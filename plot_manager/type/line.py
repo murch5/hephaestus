@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from plot_manager.type import anim_plot
+from type import anim_plot
 
 
 class Line(anim_plot.AnimPlot):

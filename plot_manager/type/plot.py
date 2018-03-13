@@ -4,8 +4,8 @@ import io_util.xml_parse as xml_parser
 
 import factory_manager as fm
 import data_manager as dm
-import plot_manager.annotation_manager as am
-import plot_manager.anno as am_class
+import annotation_manager as am
+import anno as am_class
 
 import os as os
 
@@ -33,11 +33,15 @@ class Plot(fm.FactoryObject):
 
     def build(self):
 
+        logger.debug("Build plot")
+
         self.update_attr(self.plot_style)
 
         annotate_XML = self.xml.find("annotate")
 
         plot_style_settings = self.xml.find("plot_style")
+
+
 
         self.update_attr(xml_parser.xml_to_dict(plot_style_settings))
 
@@ -67,10 +71,9 @@ class Plot(fm.FactoryObject):
     def set_data(self, data_dict):
 
         data_list = []
-        for dataset in self.xml.iterfind(".//data/dataset/name"):
-            data_list.append(data_dict[dataset.text])
 
-        self.data = data_list
+        self.data = [data_dict.get(self.xml.findtext("source"))]
+
         pass
 
     def load_plot_settings(self):
@@ -82,7 +85,7 @@ class Plot(fm.FactoryObject):
                 logger.error("Plot type config " + self.plot_type + ".yml failed to load")
 
         logger.debug(self.type_settings)
-        self.update_attr(self.type_settings,overlap="drop")
+        self.update_attr(self.type_settings, overlap="drop")
 
         return
 

@@ -1,4 +1,4 @@
-from plot_manager.anno import annotation
+from anno import annotation
 import pandas as pd
 import matplotlib.patches as patch
 from matplotlib.collections import PatchCollection

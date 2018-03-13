@@ -1,4 +1,4 @@
-from plot_manager.type import anim_plot
+from type import anim_plot
 import numpy as np
 import matplotlib.collections as collect
 import matplotlib.patches as patches

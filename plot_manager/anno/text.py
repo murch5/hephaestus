@@ -1,4 +1,4 @@
-from plot_manager.anno import annotation
+from anno import annotation
 
 class Text(annotation.Annotation):
 

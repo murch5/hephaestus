@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-from plot_manager.type import anim_plot
+from type import anim_plot
 
 
 class Image(anim_plot.AnimPlot):

@@ -1,6 +1,6 @@
 import seaborn as sb
 
-from plot_manager.type import anim_plot
+from type import anim_plot
 
 
 class Scatter(anim_plot.AnimPlot):

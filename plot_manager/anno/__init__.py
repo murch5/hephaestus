@@ -1,2 +1,2 @@
-from plot_manager.anno.text import Text
-from plot_manager.anno.overlay import OverlayBBFromLabelRegions
+from anno.text import Text
+from anno.overlay import OverlayBBFromLabelRegions

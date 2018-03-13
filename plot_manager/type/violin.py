@@ -1,7 +1,7 @@
 import seaborn as sb
 import matplotlib.pyplot as plt
 
-from plot_manager.type import anim_plot
+from type import anim_plot
 
 
 class Violin(anim_plot.AnimPlot):

@@ -1,7 +1,7 @@
 import numpy as np
 
 
-from plot_manager.type import image
+from type import image
 
 
 class ContourMap(image.Image):
