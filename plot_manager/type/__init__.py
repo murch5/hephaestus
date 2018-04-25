@@ -15,3 +15,6 @@ from type.violin import Violin
 from type.peristalsis import ZbPeristalsis
 from type.image import Image
 from type.line import Line
+from type.histogram import Histogram
+from type.distribution import Distribution
+from type.map import Map

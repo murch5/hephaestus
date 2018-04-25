@@ -1,4 +1,4 @@
-type: violin
+type: histogram
 cut: 0
 scale: area
 inner: box

@@ -70,7 +70,7 @@ class Plot(fm.FactoryObject):
 
     def set_data(self, data_dict):
 
-        data_list = []
+        logger.debug("Data source ID: " + str(self.xml.findtext("source")))
 
         self.data = [data_dict.get(self.xml.findtext("source"))]
 

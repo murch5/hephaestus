@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 class Pie(anim_plot.AnimPlot):
     def draw(self):
 
-
         self.explode = None
 
         self.labels = pd.DataFrame(self.data[0].index.tolist())
@@ -52,19 +51,21 @@ class Pie(anim_plot.AnimPlot):
         if len(self.data[0]) % 2 == 0:
             color_wedge = ["#2D75A2", "#E0812B"]
         else:
-            color_wedge = ["#2D75A2", "#E0812B", "#3A923A"]
+            #color_wedge = ["#2D75A2", "#E0812B", "#3A923A"]
+            color_wedge = ["#99958C","#4393C3", "#FDB84A"]
 
         patches, text, autotext = self.subplot.pie(self.data[0], labels=self.labels.ix[:, 0], startangle=90,
                                                    explode=self.explode, autopct=make_autopct(self.data[0]),
                                                    colors=color_wedge, wedgeprops={"linewidth":1, "ec":"black"})
 
         for label in autotext:
-            label.set(fontsize=13)
+            #label.set(fontsize=13)
             label.set_bbox({"facecolor":"white","alpha":0.75})
 
 
         for label in text:
-            label.set(fontsize=16)
+            label.set(fontsize=40)
+            pass
 
         self.subplot.axis("equal")
 

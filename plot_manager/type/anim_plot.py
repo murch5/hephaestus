@@ -4,10 +4,10 @@ from type import plot
 class AnimPlot(plot.Plot):
 
     def animate(self,i):
-        return;
+        return
 
     def draw(self):
-        return;
+        return
 
     def initAnimate(self, i):
-        return;
+        return

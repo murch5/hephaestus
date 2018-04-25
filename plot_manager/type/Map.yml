@@ -1,0 +1,6 @@
+type: map
+cut: 0
+scale: area
+inner: box
+orient: h
+region_level: country

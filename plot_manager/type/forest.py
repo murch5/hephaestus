@@ -37,7 +37,7 @@ class Forest(anim_plot.AnimPlot):
             self.subplot.plot(row[4:6], yCoord, "r-", color = color_wedge[1])
 
             if self.get("show_p_value"):
-                self.subplot.annotate("$\it{p}$ = " + str.format("{0:.5f}", row[8]), [row[3], Y[index]], xytext=[10, -20],
+                self.subplot.annotate("$\it{p}$ = " + str.format("{0:.3f}", row[8]), [row[3], Y[index]], xytext=[10, -20],
                          textcoords="offset points", bbox=dict(boxstyle="round",
                                                                alpha=0.60,
                                                                fc=color_wedge[0],
