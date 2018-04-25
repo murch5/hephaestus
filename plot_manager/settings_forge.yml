@@ -1,0 +1,38 @@
+prog: Forge
+project: Hephaestus
+version: 1.0.0
+description: Program description goes here
+epilog: other stuffs ...
+arguments:
+  -
+   name: "--xml"
+   dest: xml
+  -
+   name: "--plot"
+   dest: plot_xml
+  -
+   name: ["--display","-d"]
+   dest: display_xml
+  -
+   name: ["--input","-i"]
+   dest: input
+   nargs: '*'
+  -
+   name: ["--hide","-H"]
+   dest: hide_output_flag
+   action: store_true
+  -
+   name: ["--save","-S"]
+   dest: save_flag
+   action: store_true
+  -
+   name: ["--output","-o"]
+   dest: output
+  -
+   name: "--style"
+   dest: style
+
+glyph_l1: "ǀXXXXXXXǀ"
+glyph_l2: "ǀXXXXXXXǀ"
+glyph_l3: "   ǀPǀ   "
+glyph_l4: "   ǀPǀ   "
